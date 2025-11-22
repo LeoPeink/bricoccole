@@ -1,0 +1,27 @@
+{
+  "name": "brie",
+  "version": "1.0.0",
+  "description": "bricoccole website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoPeink/bricoccole.git"
+  },
+  "keywords": [
+    "bricoccole",
+    "british",
+    "cattery"
+  ],
+  "author": "Leo Peinkhofer",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/LeoPeink/bricoccole/issues"
+  },
+  "homepage": "https://github.com/LeoPeink/bricoccole#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

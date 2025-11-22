@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRICOCCOLE | British Cuddles</title>
+    <link rel="stylesheet" type="text/css" href="stile_bricoccole.css">
+    <meta name="description" content="Allevamento di gatti di razza, BRICOCCOLE">
+    <meta name="keywords" content="gatti, razza, allevamento, BRICOCCOLE, gattini">
+</head>
+
+<body>
+    <main class="main-container"> 
+        <header>
+            <h1 id="titolo-sito">BRICOCCOLE</h1> <!-- Titolo principale [16] -->
+            <h3>The cutest British Shorthairs in town!</h3>
+        </header>
+
+        <!-- Nav //TODO rendila dinamica -->
+        <nav>
+            <ul>
+                <!-- li: Elemento di lista (list item) [14, 21] -->
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/chi_siamo.html">Chi siamo</a></li>
+                <li><a href="/disponibili.html">Gattini Disponibili</a></li>
+                <li><a href="/contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+
+
+       <!-- QUILL demo: textbox with buttons to insert new article or new cat.-->
+
+            <h2>Area Riservata</h2>
+                
+                <h3>Benvenuto nell'area riservata!</h3>
+                <p>Qui puoi gestire i tuoi articoli e gatti. Usa i pulsanti qui sotto per iniziare.</p>
+                <!-- Include stylesheet -->
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
+<!-- Create the editor container -->
+<div id="editor">
+  <p>Hello World!</p>
+  <p>Some initial <strong>bold</strong> text</p>
+  <p><br /></p>
+</div>
+
+<!-- Include the Quill library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+  const quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+</script>
+
+
+                <button onclick="alert('Funzione per aggiungere un nuovo articolo in arrivo!')">Aggiungi Nuovo Articolo</button>
+                <button onclick="alert('Funzione per aggiungere un nuovo gatto in arrivo!')">Aggiungi Nuovo Gatto</button>
+        <!-- Aside: Contenuto collaterale o ortogonale rispetto al contenuto principale [7, 16, 19, 20] -->
+        <aside class="sidebar">
+            <h3>Perché scegliere BRICOCCOLE?</h3>
+            <ul>
+                <li>Allevamento a 360° con 14 anni di esperienza</li>
+                <li>Salute Certificata dai migliori veterinari</li>
+                <li>Pedigree d'Eccellenza</li>
+                <li>Supporto e flessibilità Post-Adozione</li>
+            </ul>
+        </aside>
+
+        <!-- Footer: Informazioni finali legate alla sezione, come contatti e copyright [7, 16-18] -->
+        <footer id="contatti">
+            <h2>Contatti</h2>
+            <!-- address: Informazioni di contatto [16-18] -->
+            <address>
+                Email: <a href="mailto:info@bricoccole.it">info@bricoccole.it</a>
+            </address>
+            <p><small>&copy; 2024 BRICOCCOLE Allevamento.</small></p>
+            <p><small>P.IVA: 12345678901</small></p>
+        </footer>
+    </main>
+</body>
+</html>

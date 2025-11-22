@@ -1,0 +1,18 @@
+services:
+  app:
+    container_name: app_bricoccole
+    build: .
+    command: nodemon --watch /usr/src/app -e js app.js -L
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/usr/src/app
+    links:
+      - "mongo:mongo"
+  mongo:
+    container_name: mongo_bricoccole 
+    image: mongo:latest
+    volumes:
+      - ./data:/data/db
+    ports:
+      - '27017:27017'

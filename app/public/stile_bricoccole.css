@@ -1,0 +1,149 @@
+/* Stile base del documento e del corpo */
+body {
+    /* Impostazioni generali del testo */
+    /*font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Carattere pulito e moderno */
+    color: #333; /* Grigio scuro per il testo */
+    background-color: #ffeaf5; /* Sfondo molto chiaro */
+    /* Per ottenere la bordura bianca elegante intorno alla pagina */
+    padding: 15px; /* Spazio per la bordura */
+    margin: 0;
+}
+
+/* Colore principale Rosa (Accenti) [30, 32] */
+.main-container, header, nav, footer {
+    /* Per gli accenti usiamo un rosa più vivace (es. un Fucsia attenuato) */
+    color: #FF1493; /* Deep Pink (Rosa Acceso) */
+}
+
+/* Stile dell'Header e Titolo */
+header {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FFC0CB; /* Rosa per separatore */
+}
+
+#titolo-sito {
+    color: #FF69B4; /* Rosa acceso per il titolo */
+    font-size: 2.5em; /* Dimensione del font [28] */
+    margin-bottom: 0.2em;
+}
+
+#news {
+    padding: 20px;
+}
+
+
+
+
+/*Ogni articolo deve avere le immagini a destra, il testo a sinistra, sullo stesso livello. Il div .newsText contiene il testo dell'articolo e deve essere escluso dal flex.*/
+
+.news-article {
+    display: flex; /* Utilizza Flexbox per layout orizzontale [27, 33] */
+    align-items: flex-start; /* Allinea in alto gli elementi [27] */
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc; /* Delimita visivamente il box dell'articolo */
+
+}
+.news-article img {
+    max-width: 200px; /* Limita la larghezza dell'immagine */
+    height: auto;
+    margin-left: 20px; /* Spazio tra testo e immagine */
+    border-radius: 8px; /* Bordo arrotondato elegante */
+}
+
+/* Gestione dello scaling dell'immagine e del box */
+.news-article .cat-image {
+    /* Rende l'immagine un box flottante a destra, permettendo al testo di scorrere attorno ad essa [1, 4] */
+    float: right; 
+    
+    /* Definisce il "box" in cui l'immagine deve essere scalata [2] */
+    max-width: 30%; /* Limita la larghezza massima al 30% del contenitore */
+    max-height: 250px; /* Può essere utile per limitare l'altezza in un box [2] */
+    height: auto; /* Mantiene le proporzioni originali dell'immagine [2] */
+    
+    /* Crea un margine a sinistra per separare l'immagine dal testo, contribuendo allo "spazio per il testo" [2] */
+    margin-left: 15px;
+    
+    /* Assicuriamo che l'immagine sia un elemento a blocchi per rispettare le dimensioni [5] */
+    display: block; 
+}
+
+/* Assicurazione di un minimo di spazio verticale per il testo (paragrafi) */
+.news-article p {
+    line-height: 1.6; /* Migliora la leggibilità del testo [6] */
+    margin-bottom: 10px;
+}
+
+/*
+#news-article{
+    border: 2px solid #FF69B4; 
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #FFF0F5;
+}*/
+
+/* Stile Navigazione */
+nav ul {
+    list-style: none; /* Rimuove i pallini di lista [21] */
+    padding: 0;
+    margin: 15px 0;
+    display: flex; /* Utilizza Flexbox per allineare gli elementi [27, 33] */
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #FF1493; /* Deep Pink */
+    font-weight: bold;
+    /* Pseudoclasse per effetto al passaggio del mouse (hover) [34] */
+    /* Lo pseudo-elemento :hover cambia lo stile di un elemento quando l'utente vi interagisce [35, 36] */
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #FFC0CB; /* Rosa chiaro al passaggio */
+}
+
+/* Contenuto principale (Sezioni e Articoli) */
+.content-section {
+    padding: 20px 0;
+    border-bottom: 1px dashed #FFC0CB;
+}
+
+h2, h3 {
+    color: #FF69B4; /* Tono rosa per i sottotitoli [16] */
+}
+
+/* Immagini e Aside (sezione laterale) 
+.cat-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; Bordo arrotondato elegante 
+    margin-top: 10px;
+}
+*/
+.sidebar {
+    /* aside è contenuto collaterale [16] */
+    background-color: #FAEBD7; /* Sfondo leggermente contrastante (beige chiaro) */
+    padding: 15px;
+    margin: 20px 0;
+    border-left: 3px solid #FFC0CB;
+}
+
+/* Stile Footer */
+footer {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+footer a {
+    color: #FF1493;
+}
