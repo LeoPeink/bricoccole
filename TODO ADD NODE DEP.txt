@@ -1,0 +1,5 @@
+lista di dep node packets npm
+
+jsonwebtoken
+cookie-parser
+mongodb

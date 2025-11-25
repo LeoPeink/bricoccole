@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRICOCCOLE | British Cuddles</title>
+    <link rel="stylesheet" type="text/css" href="css/stile_bricoccole.css">
+    <meta name="description" content="Allevamento di gatti di razza, BRICOCCOLE">
+    <meta name="keywords" content="gatti, razza, allevamento, BRICOCCOLE, gattini">
+</head>
+
+<body>
+    <main class="main-container"> 
+        <header>
+            <h1 id="titolo-sito">BRICOCCOLE</h1> <!-- Titolo principale [16] -->
+            <h3>The cutest British Shorthairs in town!</h3>
+        </header>
+
+        <!-- Nav //TODO rendila dinamica -->
+        <nav>
+            <ul>
+                <!-- li: Elemento di lista (list item) -->
+                <li><a href="/home">home</a></li>
+                <li><a href="/cubs">cubs</a></li>
+                <li><a href="/who_we_are">who we are</a></li>
+                <li><a href="/contacts">contacts</a></li>
+                <li><a href="/links">links</a></li>
+                <li><a href="/news">news</a></li>
+                <li><a href="/our_cats">our cats</a></li>
+                <li><a href="/the_British_Shorthair">the British Shorthair</a></li>
+            </ul>
+        </nav>
+
+        <!-- //TODO sistema login - fake login that brings to /privata.html: --> 
+        <div class="login-container">
+            <form action="/privata">
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+            <input type="submit" value="Login" />
+            </form>
+        </div>
+
+        <!-- Section 1: News mobili? -->
+        <section class="news-section">
+            <h2>News BRICOCCOLE</h2>
+            <article class="news-article">
+                <div>
+                <h3>Titolo della news</h3>
+                <h4>10 Maggio 2025</h4>
+                <p>Il nostro piccolo <a href="/disponibili">Sgorbio</a> ha visto il <strong>best in show</strong> durante l'Expo Felina di Bologna 2025!</p>
+                </div>
+                <img src="/media/sgorbio4.png" alt="Sgorbio con coccarda" class="cat-image">
+                <!-- img: Elemento per l'immagine; richiede attributo src e alt [22-24] -->
+            </article>
+            <article class="news-article">
+                <div class = "newsText">
+                <h3>//PLACEHOLDER - SECONDA NEWS</h3>
+                <h4>dd MMMMM yyyy</h4>
+                <p>Qui il testo del prossimo articolo! L'idea è farli girare, dai più recenti a quelli meno recenti. Cliccando sull'articolo, si potrebbe aprire a pagina intera.</p>
+                </div>
+            </article>
+        </section>
+        
+        <!-- Aside: Contenuto collaterale o ortogonale rispetto al contenuto principale [7, 16, 19, 20] -->
+        <aside class="sidebar">
+            <h3>Perché scegliere BRICOCCOLE?</h3>
+            <ul>
+                <li>Allevamento a 360° con 14 anni di esperienza</li>
+                <li>Salute Certificata dai migliori veterinari</li>
+                <li>Pedigree d'Eccellenza</li>
+                <li>Supporto e flessibilità Post-Adozione</li>
+            </ul>
+        </aside>
+
+        <!-- Footer: Informazioni finali legate alla sezione, come contatti e copyright [7, 16-18] -->
+        <footer id="contatti">
+            <h2>Contatti</h2>
+            <!-- address: Informazioni di contatto [16-18] -->
+            <address>
+                Email: <a href="mailto:info@bricoccole.it">info@bricoccole.it</a>
+            </address>
+            <p><small>&copy; 2024 BRICOCCOLE Allevamento.</small></p>
+            <p><small>P.IVA: 12345678901</small></p>
+        </footer>
+    </main>
+</body>
+</html>

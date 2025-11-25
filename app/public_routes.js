@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
-//const dbOperator = require("./db_ops.js");
-//const db = require("./db.js");
-//const jwt = require("jsonwebtoken");
-//const { ObjectId } = require("mongodb");
+const dbOperator = require("./db_ops.js");
+const db = require("./db.js");
+const jwt = require("jsonwebtoken");
+const { ObjectId } = require("mongodb");
 
 // AGGIUNGI ALLE DEP DI DOCKER
-/*
 //LOGIN DI UN UTENTE
 router.post("/auth/signin", async (req, res) => {
   const { username, password } = req.body; 
+  //print debug line on server
+  console.log("Attempting login for user:", username , "with password:", password); //TODO DELETE ME
   const u = { username, password }; //pulizia del body
   try {
     const user = await dbOperator.askDbOneDocument("users", u);
@@ -22,13 +23,14 @@ router.post("/auth/signin", async (req, res) => {
       console.log("USER " + user.username + " LOGGED IN!");
       res.redirect("/index");
     } else {
-      //console.log("LOGIN ERROR!");
-      res.status(403).redirect("/login");
+      console.log("LOGIN ERROR!");
+      //res.status(403).redirect("/login");
     }
   } catch (error) {
-    throw new Error("Errore di login");
+    throw new Error(error);
   }
 });
+/*
 //REGISTRAZIONE DI UN UTENTE
 router.post("/auth/signup", async (req, res) => {
   if(!req.body.username || !req.body.password || !req.body.name || !req.body.surname)

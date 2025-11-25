@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<!-- AUTO - SCRIPT COMPONENTLOADER 
+<script src="../js/componentLoader.js" defer></script>-->
+
+<!-- AUTO - HEAD METADATA SECTION -->
+<div id="meta_head"></div>
+<body>
+    <div class="form-page-container">
+        
+        <!-- LOGO/TITOLI -->
+        <header class="page-header">
+            <h1 class="page-title">Bricoccole</h1>
+            <p class="page-subtitle">🔐Area riservata</p>
+        </header>
+
+        <!-- FORM DI LOGIN -->
+        <div class="form-container">
+            <form method="post" action="/api/auth/signin" class="form-style">
+                <input type="text" name="username" placeholder="Username" class="form-input" required>
+                <input type="password" name="password" placeholder="Password" class="form-input" required>
+                <input type="submit" value="Accedi" class="form-button">
+            </form>
+        </div>
+        <a href="/index" class="back-link">← Torna alla Home</a>
+    </div>
+
+</body>
+</html>

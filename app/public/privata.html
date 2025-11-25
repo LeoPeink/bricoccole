@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRICOCCOLE | British Cuddles</title>
-    <link rel="stylesheet" type="text/css" href="stile_bricoccole.css">
+    <link rel="stylesheet" type="text/css" href="css/stile_bricoccole.css">
     <meta name="description" content="Allevamento di gatti di razza, BRICOCCOLE">
     <meta name="keywords" content="gatti, razza, allevamento, BRICOCCOLE, gattini">
 </head>
@@ -81,3 +81,18 @@
     </main>
 </body>
 </html>
+
+
+
+    <input type="file" id="file-selector" multiple>
+<script>
+  const fileSelector = document.getElementById('file-selector');
+  fileSelector.addEventListener('change', (event) => {
+    const fileList = event.target.files;
+    console.log(fileList);
+  });
+  /*put the file in an img element*/
+  const img = document.createElement('img');
+  img.src = URL.createObjectURL(fileList[0]);
+  document.body.appendChild(img);
+</script>

@@ -1,83 +1,90 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRICOCCOLE | British Cuddles</title>
-    <link rel="stylesheet" type="text/css" href="stile_bricoccole.css">
-    <meta name="description" content="Allevamento di gatti di razza, BRICOCCOLE">
-    <meta name="keywords" content="gatti, razza, allevamento, BRICOCCOLE, gattini">
-</head>
+
+<!-- AUTO - SCRIPT COMPONENTLOADER -->
+<script src="/js/componentLoader.js" defer></script>
+
+<!-- AUTO - HEAD METADATA SECTION -->
+<div id="meta_head"></div>
 
 <body>
-    <main class="main-container"> 
-        <header>
-            <h1 id="titolo-sito">BRICOCCOLE</h1> <!-- Titolo principale [16] -->
-            <h3>The cutest British Shorthairs in town!</h3>
-        </header>
-
-        <!-- Nav //TODO rendila dinamica -->
-        <nav>
-            <ul>
-                <!-- li: Elemento di lista (list item) [14, 21] -->
-                <li><a href="/index">Home</a></li>
-                <li><a href="/chi_siamo">Chi siamo</a></li>
-                <li><a href="/disponibili">Gattini Disponibili</a></li>
-                <li><a href="/contatti">Contatti</a></li>
-            </ul>
-        </nav>
-
-        <!-- fake login that brings to /privata.html: --> 
-        <div class="login-container">
-            <form action="/privata">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-            <input type="submit" value="Login" />
-            </form>
-        </div>
-
-        <!-- Section 1: News mobili? -->
-        <section id="news" class="content-section">
-            <h2>News BRICOCCOLE</h2>
-            <article class="news-article">
-                <div class = "newsText">
-                <h3>Sgorbio vincitore di Expo Bologna 2025!</h3>
-                <h4>10 Maggio 2025</h4>
-                <p>Il nostro piccolo <a href="/disponibili">Sgorbio</a> ha visto il <strong>best in show</strong> durante l'Expo Felina di Bologna 2025!</p>
-                </div>
-                <img src="/media/sgorbio4.png" alt="Sgorbio con coccarda" class="cat-image">
-                <!-- img: Elemento per l'immagine; richiede attributo src e alt [22-24] -->
-            </article>
-            <article class="news-article">
-                <div class = "newsText">
-                <h3>//PLACEHOLDER - SECONDA NEWS</h3>
-                <h4>dd MMMMM yyyy</h4>
-                <p>Qui il testo del prossimo articolo! L'idea è farli girare, dai più recenti a quelli meno recenti. Cliccando sull'articolo, si potrebbe aprire a pagina intera.</p>
-                </div>
-            </article>
-        </section>
+    <div class="main-container">
         
-        <!-- Aside: Contenuto collaterale o ortogonale rispetto al contenuto principale [7, 16, 19, 20] -->
-        <aside class="sidebar">
-            <h3>Perché scegliere BRICOCCOLE?</h3>
-            <ul>
-                <li>Allevamento a 360° con 14 anni di esperienza</li>
-                <li>Salute Certificata dai migliori veterinari</li>
-                <li>Pedigree d'Eccellenza</li>
-                <li>Supporto e flessibilità Post-Adozione</li>
-            </ul>
-        </aside>
+        <!-- AUTO - HEADER SECTION -->
+         <div id="header"></div>
+        <!-- AUTO - NAVIGATION CARDS -->
+        <div id="navbar"></div>
 
-        <!-- Footer: Informazioni finali legate alla sezione, come contatti e copyright [7, 16-18] -->
-        <footer id="contatti">
-            <h2>Contatti</h2>
-            <!-- address: Informazioni di contatto [16-18] -->
-            <address>
-                Email: <a href="mailto:info@bricoccole.it">info@bricoccole.it</a>
-            </address>
-            <p><small>&copy; 2024 BRICOCCOLE Allevamento.</small></p>
-            <p><small>P.IVA: 12345678901</small></p>
-        </footer>
-    </main>
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content-area">
+            
+            <!-- NEWS/CONTENT SECTION -->
+            <section class="content-section">
+                <h2 class="section-title">Ultime Notizie</h2>
+                
+                <!-- Featured News Article -->
+                <article class="featured-article">
+                    <div class="article-content">
+                        <h3 class="article-title">Sgorbio vincitore di Expo Bologna 2025!</h3>
+                        <p class="article-date">10 Maggio 2025</p>
+                        <p class="article-text">Il nostro piccolo <a href="/disponibili">Sgorbio</a> ha vinto il <strong>best in show</strong> durante l'Expo Felina di Bologna 2025!</p>
+                    </div>
+                    <div class="article-image">
+                        <img src="/media/sgorbio4.png" alt="Sgorbio con coccarda vincitrice" class="featured-image">
+                    </div>
+                </article>
+
+                <!-- Secondary News -->
+                <div class="secondary-news">
+                    <article class="news-item">
+                        <h4 class="news-title">Nuovi cuccioli in arrivo</h4>
+                        <p class="news-date">5 Novembre 2025</p>
+                        <p class="news-summary">La nostra gatta Duchess aspetta dei bellissimi cuccioli per gennaio!</p>
+                    </article>
+                    
+                    <article class="news-item">
+                        <h4 class="news-title">Certificazione di eccellenza</h4>
+                        <p class="news-date">20 Ottobre 2025</p>
+                        <p class="news-summary">BRICOCCOLE riceve il riconoscimento per l'allevamento responsabile.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SIDEBAR INFO -->
+            <aside class="info-sidebar">
+                <div class="info-card">
+                    <h3 class="info-title">Perché scegliere BRICOCCOLE?</h3>
+                    <ul class="benefits-list">
+                        <li>✓ Allevamento con 14 anni di esperienza</li>
+                        <li>✓ Salute certificata dai migliori veterinari</li>
+                        <li>✓ Pedigree d'eccellenza</li>
+                        <li>✓ Supporto post-adozione</li>
+                    </ul>
+                </div>
+                
+                <div class="contact-card">
+                    <h3 class="contact-title">Contatti Rapidi</h3>
+                    <p class="contact-info">📧 info@bricoccole.it</p>
+                    <p class="contact-info">📱 +39 123 456 7890</p>
+                </div>
+            </aside>
+            
+        </main>
+
+        <!-- FOOTER -->
+        <footer id="footer" class="site-footer"></footer>
+
+    </div>
 </body>
 </html>
+
+
+
+        <!-- LOGIN SECTION (Optional - can be moved to header corner) 
+        <div class="login-section">
+            <form action="/privata" class="login-form">
+                <input type="text" placeholder="Username" class="login-input">
+                <input type="password" placeholder="Password" class="login-input">
+                <input type="submit" value="Area Riservata" class="login-button">
+            </form>
+        </div>-->

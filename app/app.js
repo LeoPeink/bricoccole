@@ -4,15 +4,15 @@ const port = 3000;
 
 //IMPORTAZIONE MODULI
 //---DB CONNECTION & OPERATIONS
-//const db = require("./db.js"); // Importa il modulo per la connessione al database
-//const { MongoClient } = require("mongodb");
-//const dbOperator = require("./db_ops.js"); // Importa le funzioni
+const db = require("./db.js"); // Importa il modulo per la connessione al database
+const { MongoClient } = require("mongodb");
+const dbOperator = require("./db_ops.js"); // Importa le funzioni
 
 
 //---JWT & AUTHENTICATION
-//const jwt = require("jsonwebtoken");
-//const cookieParser = require("cookie-parser"); //per gestire i cookie //TODO AGGIUNGI ALLE DEP DI DOCKER
-//app.use(cookieParser()); //permette di leggere i cookie nelle richieste
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser"); //per gestire i cookie //TODO AGGIUNGI ALLE DEP DI DOCKER
+app.use(cookieParser()); //permette di leggere i cookie nelle richieste
 
 
 //--ROUTES
@@ -23,8 +23,8 @@ console.log("Inizializzo il server Express...");
 
 
 //CONFIGIRAZIONE MIDDLEWARE
-//app.use(express.json()); //necessario per gestire il corpo delle richieste in formato JSON nelle chiamate POST
-//app.use(express.urlencoded({ extended: true })); //necessario per gestire il corpo delle richieste in formato x-www-form-urlencoded (es. form HTML)
+app.use(express.json()); //necessario per gestire il corpo delle richieste in formato JSON nelle chiamate POST
+app.use(express.urlencoded({ extended: true })); //necessario per gestire il corpo delle richieste in formato x-www-form-urlencoded (es. form HTML)
 
 
 
@@ -33,24 +33,20 @@ app.use(express.static("public/", { extensions: ["","html","css","js"] })); //pe
 
 
 //---ROUTE PUBBLICHE
-//app.use("/api", public_routes); //collego le route definite in public_routes.js al web server
+app.use("/api", public_routes); //collego le route definite in public_routes.js al web server
 
 
 //---RISORSE PRIVATE
-//app.use("/api", verifyToken, protected_routes);
-//app.use("/restricted", verifyToken, express.static("restricted/", { extensions: ["","html"] }));
+app.use("/api", verifyToken, protected_routes);
+app.use("/restricted", verifyToken, express.static("restricted/", { extensions: ["","html"] }));
 
 
 
 
 //LASTLY, ERROR PAGE AS LAST MATCH
 app.use((req, res) => {
-    res.status(404).sendFile('404.html' , {root: 'public' });
+    res.status(404).redirect('/404');
 });
-
-
-
-
 
 
 //UTILS
