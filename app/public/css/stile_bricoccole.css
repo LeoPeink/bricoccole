@@ -9,6 +9,7 @@
 body {
     background-color: #f6c7c3;
     color: #574240;
+    color: #64070d;
     /*font-family: "Playwrite GB S", cursive;*/
     /*import font monotype cursiva from local folder /public/media/fonts*/
     font-family: "Monotype Corsiva", cursive;
@@ -42,7 +43,8 @@ body {
 .site-subtitle {
     font-size: 2rem;
     margin: 0 0 2% 0; /* No margin around subtitle */
-    color: #574240;
+    /*color: #574240;*/
+    color: #64070d;
     opacity: 0.8;
 }
 
