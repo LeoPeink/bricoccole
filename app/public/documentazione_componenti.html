@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRICOCCOLE | Documentazione Componenti CSS</title>
+    <link rel="stylesheet" type="text/css" href="css/stile_bricoccole.css">
+    
+    <style>
+        /* ===== STYLES SPECIFICI PER QUESTA PAGINA DOCUMENTAZIONE ===== */
+        
+        :root {
+            --doc-bg: #f5f5f5;
+            --doc-code-bg: #2d2d2d;
+            --doc-code-text: #f8f8f2;
+            --doc-border: #ddd;
+        }
+        
+        body {
+            background-color: var(--doc-bg);
+        }
+        
+        /* Container documentazione */
+        .doc-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+        
+        /* Header documentazione */
+        .doc-header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-2xl);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .doc-title {
+            font-size: 3rem;
+            color: var(--color-text);
+            margin: 0 0 var(--space-md) 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .doc-subtitle {
+            font-size: 1.4rem;
+            color: var(--color-text);
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Navigation TOC */
+        .doc-nav {
+            background: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-2xl);
+            position: sticky;
+            top: var(--space-md);
+            z-index: 100;
+        }
+        
+        .doc-nav-title {
+            font-size: var(--font-2xl);
+            margin: 0 0 var(--space-md) 0;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: var(--space-sm);
+        }
+        
+        .doc-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-sm);
+        }
+        
+        .doc-nav-item {
+            margin: 0;
+        }
+        
+        .doc-nav-link {
+            display: block;
+            padding: var(--space-sm);
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+            font-size: var(--font-md);
+        }
+        
+        .doc-nav-link:hover {
+            background: var(--color-primary);
+            transform: translateX(4px);
+        }
+        
+        /* Sezione componente */
+        .component-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: 4rem; /* Più spazio tra componenti */
+            box-shadow: var(--shadow-lg);
+            scroll-margin-top: 100px;
+            border: 2px solid var(--color-primary-dark); /* Bordo per separare meglio */
+        }
+        
+        .component-title {
+            font-size: var(--font-4xl);
+            color: var(--color-text);
+            margin: 0 0 var(--space-sm) 0;
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .component-description {
+            font-size: var(--font-lg);
+            color: var(--color-text);
+            margin: 0 0 var(--space-2xl) 0;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Tabs per codice */
+        .code-tabs {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: 0;
+            border-bottom: 2px solid var(--doc-border);
+        }
+        
+        .code-tab {
+            padding: var(--space-md) var(--space-lg);
+            background: var(--doc-border);
+            border: none;
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            font-family: "Monotype Corsiva", cursive, sans-serif;
+            font-size: var(--font-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--color-text);
+            font-weight: bold;
+        }
+        
+        .code-tab:hover {
+            background: var(--color-primary-dark);
+        }
+        
+        .code-tab.active {
+            background: var(--doc-code-bg);
+            color: var(--doc-code-text);
+        }
+        
+        /* Blocchi codice */
+        .code-block {
+            background: var(--doc-code-bg);
+            color: var(--doc-code-text);
+            padding: var(--space-xl);
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            overflow-x: auto;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .code-block code {
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        
+        /* Pulsante copia */
+        .copy-btn {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-sm);
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-fast);
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .copy-btn.copied {
+            background: #4caf50;
+            border-color: #4caf50;
+        }
+        
+        /* Preview box */
+        .preview-box {
+            background: var(--color-primary);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-md);
+            border: 3px solid var(--color-primary-dark);
+            margin-top: var(--space-xl);
+        }
+        
+        .preview-label {
+            background: var(--color-text);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-sm);
+            display: inline-block;
+            margin-bottom: var(--space-md);
+            font-weight: bold;
+        }
+        
+        /* Assicuriamoci che le news-item nel preview mantengano gli stili hover */
+        .preview-box .secondary-news {
+            display: grid;
+            gap: var(--space-lg);
+        }
+        
+        .preview-box .news-item {
+            cursor: pointer;
+        }
+        
+        /* Syntax highlighting */
+        .keyword { color: #ff79c6; }
+        .selector { color: #50fa7b; }
+        .property { color: #8be9fd; }
+        .value { color: #f1fa8c; }
+        .comment { color: #6272a4; font-style: italic; }
+        .tag { color: #ff79c6; }
+        .attr { color: #50fa7b; }
+        .string { color: #f1fa8c; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .doc-container {
+                padding: var(--space-md);
+            }
+            
+            .doc-nav-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .component-section {
+                padding: var(--space-lg);
+            }
+            
+            .code-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .code-tab {
+                flex: 1 1 auto;
+            }
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary-darker);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--color-text-accent);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="doc-container">
+        
+        <!-- HEADER DOCUMENTAZIONE -->
+        <header class="doc-header">
+            <h1 class="doc-title">📚 Documentazione Componenti CSS</h1>
+            <p class="doc-subtitle">Bricoccole - Guida completa con codice e preview</p>
+        </header>
+
+        <!-- NAVIGATION -->
+        <nav class="doc-nav">
+            <h2 class="doc-nav-title">📑 Indice Componenti</h2>
+            <ul class="doc-nav-list">
+                <li class="doc-nav-item"><a href="#header" class="doc-nav-link">🏠 Header</a></li>
+                <li class="doc-nav-item"><a href="#nav-cards" class="doc-nav-link">🧭 Navigation Cards</a></li>
+                <li class="doc-nav-item"><a href="#content-section" class="doc-nav-link">📄 Content Section</a></li>
+                <li class="doc-nav-item"><a href="#featured-article" class="doc-nav-link">⭐ Featured Article</a></li>
+                <li class="doc-nav-item"><a href="#news-item" class="doc-nav-link">📰 News Item</a></li>
+                <li class="doc-nav-item"><a href="#info-card" class="doc-nav-link">💳 Info Card</a></li>
+                <li class="doc-nav-item"><a href="#contact-card" class="doc-nav-link">📞 Contact Card</a></li>
+                <li class="doc-nav-item"><a href="#footer" class="doc-nav-link">🔻 Footer</a></li>
+                <li class="doc-nav-item"><a href="#form" class="doc-nav-link">📝 Form</a></li>
+                <li class="doc-nav-item"><a href="#buttons" class="doc-nav-link">🔘 Buttons</a></li>
+                <li class="doc-nav-item"><a href="#utilities" class="doc-nav-link">🛠️ Utilities</a></li>
+                <li class="doc-nav-item"><a href="#variables" class="doc-nav-link">🎨 CSS Variables</a></li>
+            </ul>
+        </nav>
+
+        <!-- ============================================
+             COMPONENTE 1: HEADER
+             ============================================ -->
+        <section id="header" class="component-section">
+            <h2 class="component-title">🏠 Header Section</h2>
+            <p class="component-description">
+                Il componente header contiene il titolo principale del sito e il sottotitolo. 
+                È centrato e responsive, con font size che si adattano ai dispositivi.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'header-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'header-html')">HTML</button>
+            </div>
+
+            <div id="header-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="comment">/* Header Section */</span>
+<span class="selector">.header-section</span> {
+  <span class="property">text-align</span>: <span class="value">center</span>;
+  <span class="property">padding</span>: <span class="value">var(--space-xl) 0</span>;
+}
+
+<span class="selector">.site-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-5xl)</span>; <span class="comment">/* 5rem */</span>
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-xs) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+  <span class="property">text-shadow</span>: <span class="value">2px 2px 4px rgba(0, 0, 0, 0.25)</span>;
+}
+
+<span class="selector">.site-subtitle</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-3xl)</span>; <span class="comment">/* 1.8rem */</span>
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-xl) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text-accent)</span>;
+  <span class="property">opacity</span>: <span class="value">0.8</span>;
+}</code></pre>
+            </div>
+
+            <div id="header-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;header</span> <span class="attr">class=</span><span class="string">"header-section"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attr">class=</span><span class="string">"site-title"</span><span class="tag">&gt;</span>Bricoccole<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"site-subtitle"</span><span class="tag">&gt;</span>The cutest British Shorthairs in town!<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/header&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <header class="header-section" style="padding: var(--space-lg) 0;">
+                    <h1 class="site-title" style="font-size: 3rem;">Bricoccole</h1>
+                    <p class="site-subtitle" style="font-size: 1.3rem; margin-bottom: 0;">The cutest British Shorthairs in town!</p>
+                </header>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 2: NAVIGATION CARDS
+             ============================================ -->
+        <section id="nav-cards" class="component-section">
+            <h2 class="component-title">🧭 Navigation Cards</h2>
+            <p class="component-description">
+                Cards di navigazione responsive che si dispongono in 8 colonne su desktop, 
+                2 colonne su tablet e 1 colonna su mobile. Hanno effetto hover con elevazione.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'nav-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'nav-html')">HTML</button>
+            </div>
+
+            <div id="nav-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="comment">/* Navigation Cards Container */</span>
+<span class="selector">.nav-cards-container</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">repeat(8, 1fr)</span>;
+  <span class="property">gap</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">margin-bottom</span>: <span class="value">var(--space-2xl)</span>;
+}
+
+<span class="comment">/* Single Nav Card */</span>
+<span class="selector">.nav-card</span> {
+  <span class="property">display</span>: <span class="value">flex</span>;
+  <span class="property">flex-direction</span>: <span class="value">column</span>;
+  <span class="property">justify-content</span>: <span class="value">center</span>;
+  <span class="property">align-items</span>: <span class="value">center</span>;
+  <span class="property">background</span>: <span class="value">var(--color-bg-white)</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-md)</span>;
+  <span class="property">padding</span>: <span class="value">var(--space-md)</span>;
+  <span class="property">text-decoration</span>: <span class="value">none</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-md)</span>;
+  <span class="property">transition</span>: <span class="value">all var(--transition-base)</span>;
+  <span class="property">min-height</span>: <span class="value">60px</span>;
+}
+
+<span class="selector">.nav-card:hover</span> {
+  <span class="property">transform</span>: <span class="value">translateY(-5px)</span>;
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-lg)</span>;
+  <span class="property">background-color</span>: <span class="value">var(--color-bg-light)</span>;
+}
+
+<span class="selector">.nav-card-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-lg)</span>;
+  <span class="property">margin</span>: <span class="value">0</span>;
+  <span class="property">font-weight</span>: <span class="value">bold</span>;
+  <span class="property">text-align</span>: <span class="value">center</span>;
+}
+
+<span class="selector">.nav-card-description</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-sm)</span>;
+  <span class="property">margin</span>: <span class="value">0</span>;
+  <span class="property">opacity</span>: <span class="value">0.6</span>;
+  <span class="property">text-align</span>: <span class="value">center</span>;
+}</code></pre>
+            </div>
+
+            <div id="nav-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;nav</span> <span class="attr">class=</span><span class="string">"nav-cards-container"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="string">"/index"</span> <span class="attr">class=</span><span class="string">"nav-card"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="string">"nav-card-title"</span><span class="tag">&gt;</span>🏠 HOME<span class="tag">&lt;/h3&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"nav-card-description"</span><span class="tag">&gt;</span>Pagina principale<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/a&gt;</span>
+    
+    <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="string">"/cubs"</span> <span class="attr">class=</span><span class="string">"nav-card"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="string">"nav-card-title"</span><span class="tag">&gt;</span>🐾 CUCCIOLI<span class="tag">&lt;/h3&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"nav-card-description"</span><span class="tag">&gt;</span>I nostri piccoli<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/a&gt;</span>
+    
+    <span class="comment">&lt;!-- Altre nav-card... --&gt;</span>
+<span class="tag">&lt;/nav&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <nav style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md);">
+                    <a href="#" class="nav-card">
+                        <h3 class="nav-card-title" style="font-size: 1rem;">🏠 HOME</h3>
+                        <p class="nav-card-description" style="font-size: 0.8rem;">Pagina principale</p>
+                    </a>
+                    <a href="#" class="nav-card">
+                        <h3 class="nav-card-title" style="font-size: 1rem;">🐾 CUCCIOLI</h3>
+                        <p class="nav-card-description" style="font-size: 0.8rem;">I nostri piccoli</p>
+                    </a>
+                    <a href="#" class="nav-card">
+                        <h3 class="nav-card-title" style="font-size: 1rem;">💌 CONTATTI</h3>
+                        <p class="nav-card-description" style="font-size: 0.8rem;">Scrivici</p>
+                    </a>
+                    <a href="#" class="nav-card">
+                        <h3 class="nav-card-title" style="font-size: 1rem;">📰 NEWS</h3>
+                        <p class="nav-card-description" style="font-size: 0.8rem;">Ultime notizie</p>
+                    </a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 3: CONTENT SECTION
+             ============================================ -->
+        <section id="content-section" class="component-section">
+            <h2 class="component-title">📄 Content Section</h2>
+            <p class="component-description">
+                Container principale per il contenuto con sfondo bianco, padding e ombra. 
+                Include un titolo di sezione con bordo inferiore decorativo.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'content-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'content-html')">HTML</button>
+            </div>
+
+            <div id="content-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">.content-section</span> {
+  <span class="property">background</span>: <span class="value">var(--color-bg-white)</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-lg)</span>;
+  <span class="property">padding</span>: <span class="value">var(--space-xl)</span>;
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-md)</span>;
+}
+
+<span class="selector">.section-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-4xl)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-lg) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+  <span class="property">border-bottom</span>: <span class="value">3px solid var(--color-text-light)</span>;
+  <span class="property">padding-bottom</span>: <span class="value">var(--space-sm)</span>;
+}</code></pre>
+            </div>
+
+            <div id="content-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;section</span> <span class="attr">class=</span><span class="string">"content-section"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h2</span> <span class="attr">class=</span><span class="string">"section-title"</span><span class="tag">&gt;</span>Ultime Notizie<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Il tuo contenuto qui...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/section&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <section class="content-section">
+                    <h2 class="section-title" style="font-size: 1.8rem;">Ultime Notizie</h2>
+                    <p style="margin: 0;">Questo è un esempio di contenuto all'interno di una content section. Ha uno sfondo bianco, padding generoso e un'ombra delicata.</p>
+                </section>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 4: FEATURED ARTICLE
+             ============================================ -->
+        <section id="featured-article" class="component-section">
+            <h2 class="component-title">⭐ Featured Article</h2>
+            <p class="component-description">
+                Articolo in evidenza con layout a 2 colonne (testo + immagine) su desktop, 
+                che diventa una colonna singola su mobile.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'article-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'article-html')">HTML</button>
+            </div>
+
+            <div id="article-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">.featured-article</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">2fr 1fr</span>;
+  <span class="property">gap</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">margin-bottom</span>: <span class="value">var(--space-xl)</span>;
+  <span class="property">padding</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">background</span>: <span class="value">var(--color-bg-light)</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-sm)</span>;
+}
+
+<span class="selector">.article-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-3xl)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-sm) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}
+
+<span class="selector">.article-date</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-sm)</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text-light)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-md) 0</span>;
+  <span class="property">font-style</span>: <span class="value">italic</span>;
+}
+
+<span class="selector">.article-text</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-lg)</span>;
+  <span class="property">line-height</span>: <span class="value">1.6</span>;
+  <span class="property">margin</span>: <span class="value">0</span>;
+}
+
+<span class="selector">.featured-image</span> {
+  <span class="property">width</span>: <span class="value">100%</span>;
+  <span class="property">height</span>: <span class="value">auto</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-sm)</span>;
+  <span class="property">object-fit</span>: <span class="value">cover</span>;
+}</code></pre>
+            </div>
+
+            <div id="article-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;article</span> <span class="attr">class=</span><span class="string">"featured-article"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"article-content"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="string">"article-title"</span><span class="tag">&gt;</span>Titolo Articolo<span class="tag">&lt;/h3&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"article-date"</span><span class="tag">&gt;</span>10 Maggio 2025<span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"article-text"</span><span class="tag">&gt;</span>Il testo dell'articolo...<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"article-image"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="string">"image.jpg"</span> <span class="attr">alt=</span><span class="string">"Descrizione"</span> <span class="attr">class=</span><span class="string">"featured-image"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/article&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <article class="featured-article">
+                    <div class="article-content">
+                        <h3 class="article-title" style="font-size: 1.5rem;">Grande Notizia!</h3>
+                        <p class="article-date" style="font-size: 0.9rem;">10 Maggio 2025</p>
+                        <p class="article-text" style="font-size: 1rem;">Il nostro gattino ha vinto il best in show! Un traguardo incredibile per il nostro allevamento.</p>
+                    </div>
+                    <div class="article-image" style="display: flex; align-items: center; justify-content: center; background: var(--color-primary-dark); border-radius: var(--radius-sm); min-height: 150px;">
+                        <span style="font-size: 3rem;">🏆</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 5: NEWS ITEM
+             ============================================ -->
+        <section id="news-item" class="component-section">
+            <h2 class="component-title">📰 News Item</h2>
+            <p class="component-description">
+                Elemento notizia secondario con bordo colorato a sinistra e effetto hover.
+                Perfetto per liste di notizie o aggiornamenti.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'news-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'news-html')">HTML</button>
+            </div>
+
+            <div id="news-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">.news-item</span> {
+  <span class="property">padding</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">background</span>: <span class="value">var(--color-bg-white)</span>;
+  <span class="property">border-left</span>: <span class="value">4px solid var(--color-text-light)</span>;
+  <span class="property">border-radius</span>: <span class="value">0 var(--radius-sm) var(--radius-sm) 0</span>;
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-sm)</span>;
+  <span class="property">transition</span>: <span class="value">all var(--transition-fast)</span>;
+}
+
+<span class="selector">.news-item:hover</span> {
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-md)</span>;
+  <span class="property">transform</span>: <span class="value">translateX(4px)</span>;
+}
+
+<span class="selector">.news-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-xl)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-xs) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}
+
+<span class="selector">.news-date</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-xs)</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text-light)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-sm) 0</span>;
+  <span class="property">font-style</span>: <span class="value">italic</span>;
+}
+
+<span class="selector">.news-summary</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-md)</span>;
+  <span class="property">line-height</span>: <span class="value">1.5</span>;
+  <span class="property">margin</span>: <span class="value">0</span>;
+}</code></pre>
+            </div>
+
+            <div id="news-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;article</span> <span class="attr">class=</span><span class="string">"news-item"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h4</span> <span class="attr">class=</span><span class="string">"news-title"</span><span class="tag">&gt;</span>Titolo Notizia<span class="tag">&lt;/h4&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"news-date"</span><span class="tag">&gt;</span>5 Novembre 2025<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"news-summary"</span><span class="tag">&gt;</span>Breve riassunto della notizia...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/article&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW - Passa il mouse sulle card! 👆</div>
+                <div class="secondary-news">
+                    <article class="news-item">
+                        <h4 class="news-title">Nuovi cuccioli in arrivo</h4>
+                        <p class="news-date">5 Novembre 2025</p>
+                        <p class="news-summary">La nostra gatta Duchess aspetta bellissimi cuccioli per gennaio!</p>
+                    </article>
+                    <article class="news-item">
+                        <h4 class="news-title">Certificazione di eccellenza</h4>
+                        <p class="news-date">20 Ottobre 2025</p>
+                        <p class="news-summary">BRICOCCOLE riceve il riconoscimento per l'allevamento responsabile.</p>
+                    </article>
+                    <article class="news-item">
+                        <h4 class="news-title">Open Day questo weekend</h4>
+                        <p class="news-date">1 Ottobre 2025</p>
+                        <p class="news-summary">Venite a conoscere i nostri gatti sabato e domenica. Ingresso libero!</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 6: INFO CARD
+             ============================================ -->
+        <section id="info-card" class="component-section">
+            <h2 class="component-title">💳 Info Card</h2>
+            <p class="component-description">
+                Card informativa per sidebar o contenuti secondari. Include lista di benefici 
+                con check marks.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'info-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'info-html')">HTML</button>
+            </div>
+
+            <div id="info-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">.info-card</span> {
+  <span class="property">background</span>: <span class="value">var(--color-bg-white)</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-lg)</span>;
+  <span class="property">padding</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-md)</span>;
+}
+
+<span class="selector">.info-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-2xl)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-lg) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}
+
+<span class="selector">.benefits-list</span> {
+  <span class="property">list-style</span>: <span class="value">none</span>;
+  <span class="property">padding</span>: <span class="value">0</span>;
+  <span class="property">margin</span>: <span class="value">0</span>;
+}
+
+<span class="selector">.benefits-list li</span> {
+  <span class="property">padding</span>: <span class="value">var(--space-sm) 0</span>;
+  <span class="property">font-size</span>: <span class="value">var(--font-md)</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}</code></pre>
+            </div>
+
+            <div id="info-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"info-card"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="string">"info-title"</span><span class="tag">&gt;</span>Perché scegliere BRICOCCOLE?<span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;ul</span> <span class="attr">class=</span><span class="string">"benefits-list"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;li&gt;</span>✓ Allevamento con 14 anni di esperienza<span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span>✓ Salute certificata<span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span>✓ Pedigree d'eccellenza<span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span>✓ Supporto post-adozione<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <div class="info-card">
+                    <h3 class="info-title" style="font-size: 1.4rem;">Perché scegliere BRICOCCOLE?</h3>
+                    <ul class="benefits-list">
+                        <li style="font-size: 1rem;">✓ Allevamento con 14 anni di esperienza</li>
+                        <li style="font-size: 1rem;">✓ Salute certificata dai migliori veterinari</li>
+                        <li style="font-size: 1rem;">✓ Pedigree d'eccellenza</li>
+                        <li style="font-size: 1rem;">✓ Supporto post-adozione</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 7: CONTACT CARD
+             ============================================ -->
+        <section id="contact-card" class="component-section">
+            <h2 class="component-title">📞 Contact Card</h2>
+            <p class="component-description">
+                Card per informazioni di contatto rapide. Simile alla info-card ma ottimizzata 
+                per dati di contatto con icone.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'contact-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'contact-html')">HTML</button>
+            </div>
+
+            <div id="contact-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">.contact-card</span> {
+  <span class="property">background</span>: <span class="value">var(--color-bg-white)</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-lg)</span>;
+  <span class="property">padding</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-md)</span>;
+}
+
+<span class="selector">.contact-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-2xl)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-lg) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}
+
+<span class="selector">.contact-info</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-md)</span>;
+  <span class="property">margin</span>: <span class="value">var(--space-sm) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}</code></pre>
+            </div>
+
+            <div id="contact-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"contact-card"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="string">"contact-title"</span><span class="tag">&gt;</span>Contatti Rapidi<span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"contact-info"</span><span class="tag">&gt;</span>📧 info@bricoccole.it<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"contact-info"</span><span class="tag">&gt;</span>📱 +39 123 456 7890<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <div class="contact-card">
+                    <h3 class="contact-title" style="font-size: 1.4rem;">Contatti Rapidi</h3>
+                    <p class="contact-info" style="font-size: 1rem;">📧 info@bricoccole.it</p>
+                    <p class="contact-info" style="font-size: 1rem;">📱 +39 123 456 7890</p>
+                    <p class="contact-info" style="font-size: 1rem;">📍 Milano, Italia</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 8: FOOTER
+             ============================================ -->
+        <section id="footer" class="component-section">
+            <h2 class="component-title">🔻 Footer</h2>
+            <p class="component-description">
+                Footer del sito con layout a 2 colonne su desktop e 1 colonna su mobile. 
+                Contiene informazioni aziendali e contatti.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'footer-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'footer-html')">HTML</button>
+            </div>
+
+            <div id="footer-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">.site-footer</span> {
+  <span class="property">background</span>: <span class="value">var(--color-primary-dark)</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-lg)</span>;
+  <span class="property">padding</span>: <span class="value">var(--space-xl)</span>;
+  <span class="property">margin-top</span>: <span class="value">var(--space-2xl)</span>;
+}
+
+<span class="selector">.footer-content</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">1fr 1fr</span>;
+  <span class="property">gap</span>: <span class="value">var(--space-xl)</span>;
+}
+
+<span class="selector">.footer-section h4</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-xl)</span>;
+  <span class="property">margin</span>: <span class="value">0 0 var(--space-md) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}
+
+<span class="selector">.footer-text</span> {
+  <span class="property">margin</span>: <span class="value">var(--space-xs) 0</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+  <span class="property">opacity</span>: <span class="value">0.8</span>;
+}
+
+<span class="selector">.footer-address</span> {
+  <span class="property">font-style</span>: <span class="value">normal</span>;
+}
+
+<span class="selector">.footer-address a</span> {
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+  <span class="property">text-decoration</span>: <span class="value">none</span>;
+}</code></pre>
+            </div>
+
+            <div id="footer-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;footer</span> <span class="attr">class=</span><span class="string">"site-footer"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"footer-content"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"footer-section"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h4&gt;</span>&copy; 2025 Bricoccole<span class="tag">&lt;/h4&gt;</span>
+            <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"footer-text"</span><span class="tag">&gt;</span>P.IVA: 12345678901<span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"footer-section"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;address</span> <span class="attr">class=</span><span class="string">"footer-address"</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="string">"mailto:info@bricoccole.it"</span><span class="tag">&gt;</span>info@bricoccole.it<span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;/address&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <footer class="site-footer">
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h4 style="font-size: 1.2rem;">&copy; 2025 Bricoccole Allevamento</h4>
+                            <p class="footer-text" style="font-size: 1rem;">P.IVA: 12345678901</p>
+                        </div>
+                        <div class="footer-section">
+                            <p class="footer-text" style="font-size: 1rem;">+39 123 4567890</p>
+                            <address class="footer-address">
+                                <a href="mailto:info@bricoccole.it" style="font-size: 1rem;">info@bricoccole.it</a>
+                            </address>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 9: FORM
+             ============================================ -->
+        <section id="form" class="component-section">
+            <h2 class="component-title">📝 Form Components</h2>
+            <p class="component-description">
+                Componenti form stilizzati per input, textarea e pulsanti. Ottimizzati per 
+                accessibilità con stati focus e hover chiari.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'form-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'form-html')">HTML</button>
+            </div>
+
+            <div id="form-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">.form-style</span> {
+  <span class="property">display</span>: <span class="value">flex</span>;
+  <span class="property">flex-direction</span>: <span class="value">column</span>;
+  <span class="property">gap</span>: <span class="value">var(--space-lg)</span>;
+}
+
+<span class="selector">.form-input</span> {
+  <span class="property">padding</span>: <span class="value">var(--space-md) var(--space-lg)</span>;
+  <span class="property">font-size</span>: <span class="value">var(--font-md)</span>;
+  <span class="property">border</span>: <span class="value">2px solid var(--color-primary-darker)</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-md)</span>;
+  <span class="property">font-family</span>: <span class="value">"Monotype Corsiva", cursive</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+  <span class="property">background-color</span>: <span class="value">var(--color-bg-card)</span>;
+  <span class="property">transition</span>: <span class="value">all var(--transition-base)</span>;
+}
+
+<span class="selector">.form-input:focus</span> {
+  <span class="property">outline</span>: <span class="value">none</span>;
+  <span class="property">border-color</span>: <span class="value">var(--color-text-light)</span>;
+  <span class="property">box-shadow</span>: <span class="value">0 0 0 3px rgba(139, 117, 115, 0.3)</span>;
+  <span class="property">background-color</span>: <span class="value">white</span>;
+}
+
+<span class="selector">.form-button</span> {
+  <span class="property">padding</span>: <span class="value">var(--space-lg) var(--space-xl)</span>;
+  <span class="property">font-size</span>: <span class="value">var(--font-xl)</span>;
+  <span class="property">font-weight</span>: <span class="value">bold</span>;
+  <span class="property">color</span>: <span class="value">white</span>;
+  <span class="property">background</span>: <span class="value">linear-gradient(135deg, var(--color-primary-darker), #a89290)</span>;
+  <span class="property">border</span>: <span class="value">none</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-md)</span>;
+  <span class="property">cursor</span>: <span class="value">pointer</span>;
+  <span class="property">transition</span>: <span class="value">all var(--transition-base)</span>;
+}
+
+<span class="selector">.form-button:hover</span> {
+  <span class="property">transform</span>: <span class="value">translateY(-2px)</span>;
+  <span class="property">box-shadow</span>: <span class="value">0 6px 20px rgba(0, 0, 0, 0.3)</span>;
+}</code></pre>
+            </div>
+
+            <div id="form-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="tag">&lt;form</span> <span class="attr">class=</span><span class="string">"form-style"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="string">"text"</span> 
+           <span class="attr">placeholder=</span><span class="string">"Nome"</span> 
+           <span class="attr">class=</span><span class="string">"form-input"</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="string">"email"</span> 
+           <span class="attr">placeholder=</span><span class="string">"Email"</span> 
+           <span class="attr">class=</span><span class="string">"form-input"</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;button</span> <span class="attr">type=</span><span class="string">"submit"</span> 
+            <span class="attr">class=</span><span class="string">"form-button"</span><span class="tag">&gt;</span>
+        Invia
+    <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <div style="max-width: 400px; margin: 0 auto;">
+                    <form class="form-style" onsubmit="event.preventDefault(); alert('Form demo - non invia realmente');">
+                        <input type="text" placeholder="Nome" class="form-input">
+                        <input type="email" placeholder="Email" class="form-input">
+                        <button type="submit" class="form-button">Invia</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 10: BUTTONS
+             ============================================ -->
+        <section id="buttons" class="component-section">
+            <h2 class="component-title">🔘 Buttons & Links</h2>
+            <p class="component-description">
+                Stili per pulsanti e link. Include il pulsante principale (form-button) e 
+                il link di ritorno (back-link).
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'btn-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'btn-html')">HTML</button>
+            </div>
+
+            <div id="btn-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="comment">/* Pulsante principale */</span>
+<span class="selector">.form-button</span> {
+  <span class="property">padding</span>: <span class="value">var(--space-lg) var(--space-xl)</span>;
+  <span class="property">font-size</span>: <span class="value">var(--font-xl)</span>;
+  <span class="property">font-weight</span>: <span class="value">bold</span>;
+  <span class="property">color</span>: <span class="value">white</span>;
+  <span class="property">background</span>: <span class="value">linear-gradient(135deg, var(--color-primary-darker), #a89290)</span>;
+  <span class="property">border</span>: <span class="value">none</span>;
+  <span class="property">border-radius</span>: <span class="value">var(--radius-md)</span>;
+  <span class="property">cursor</span>: <span class="value">pointer</span>;
+  <span class="property">transition</span>: <span class="value">all var(--transition-base)</span>;
+}
+
+<span class="selector">.form-button:hover</span> {
+  <span class="property">background</span>: <span class="value">linear-gradient(135deg, #a89290, var(--color-text-light))</span>;
+  <span class="property">transform</span>: <span class="value">translateY(-2px)</span>;
+  <span class="property">box-shadow</span>: <span class="value">0 6px 20px rgba(0, 0, 0, 0.3)</span>;
+}
+
+<span class="comment">/* Link di ritorno */</span>
+<span class="selector">.back-link</span> {
+  <span class="property">display</span>: <span class="value">inline-block</span>;
+  <span class="property">margin-top</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">font-size</span>: <span class="value">var(--font-3xl)</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+  <span class="property">text-decoration</span>: <span class="value">none</span>;
+  <span class="property">opacity</span>: <span class="value">0.8</span>;
+  <span class="property">transition</span>: <span class="value">opacity var(--transition-base)</span>;
+}
+
+<span class="selector">.back-link:hover</span> {
+  <span class="property">opacity</span>: <span class="value">1</span>;
+}</code></pre>
+            </div>
+
+            <div id="btn-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="comment">&lt;!-- Pulsante principale --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">class=</span><span class="string">"form-button"</span><span class="tag">&gt;</span>
+    Clicca qui
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- Link di ritorno --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="string">"/index"</span> <span class="attr">class=</span><span class="string">"back-link"</span><span class="tag">&gt;</span>
+    ← Torna alla Home
+<span class="tag">&lt;/a&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <div style="text-align: center;">
+                    <button class="form-button" onclick="alert('Button clicked!')">Clicca qui</button>
+                    <br>
+                    <a href="#buttons" class="back-link" style="font-size: 1.5rem;">← Torna alla Home</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 11: UTILITIES
+             ============================================ -->
+        <section id="utilities" class="component-section">
+            <h2 class="component-title">🛠️ Utility Classes</h2>
+            <p class="component-description">
+                Classi di utilità per spacing e allineamento testo. Da usare per aggiustamenti 
+                rapidi senza scrivere CSS custom.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'util-css')">CSS</button>
+                <button class="code-tab" onclick="showTab(event, 'util-html')">HTML</button>
+            </div>
+
+            <div id="util-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="comment">/* Text Utilities */</span>
+<span class="selector">.text-center</span> {
+  <span class="property">text-align</span>: <span class="value">center</span>;
+}
+
+<span class="comment">/* Margin Bottom */</span>
+<span class="selector">.mb-0</span> { <span class="property">margin-bottom</span>: <span class="value">0</span>; }
+<span class="selector">.mb-sm</span> { <span class="property">margin-bottom</span>: <span class="value">var(--space-sm)</span>; }
+<span class="selector">.mb-md</span> { <span class="property">margin-bottom</span>: <span class="value">var(--space-md)</span>; }
+<span class="selector">.mb-lg</span> { <span class="property">margin-bottom</span>: <span class="value">var(--space-lg)</span>; }
+<span class="selector">.mb-xl</span> { <span class="property">margin-bottom</span>: <span class="value">var(--space-xl)</span>; }
+
+<span class="comment">/* Margin Top */</span>
+<span class="selector">.mt-0</span> { <span class="property">margin-top</span>: <span class="value">0</span>; }
+<span class="selector">.mt-sm</span> { <span class="property">margin-top</span>: <span class="value">var(--space-sm)</span>; }
+<span class="selector">.mt-md</span> { <span class="property">margin-top</span>: <span class="value">var(--space-md)</span>; }
+<span class="selector">.mt-lg</span> { <span class="property">margin-top</span>: <span class="value">var(--space-lg)</span>; }
+<span class="selector">.mt-xl</span> { <span class="property">margin-top</span>: <span class="value">var(--space-xl)</span>; }</code></pre>
+            </div>
+
+            <div id="util-html" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="comment">&lt;!-- Testo centrato --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">class=</span><span class="string">"text-center"</span><span class="tag">&gt;</span>Testo centrato<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Margin bottom --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"mb-lg"</span><span class="tag">&gt;</span>Box con margin-bottom large<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- Margin top --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"mt-xl"</span><span class="tag">&gt;</span>Box con margin-top extra large<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- Combinazione --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="string">"text-center mb-md mt-lg"</span><span class="tag">&gt;</span>
+    Testo centrato con spacing
+<span class="tag">&lt;/div&gt;</span></code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW</div>
+                <div style="background: white; padding: var(--space-lg); border-radius: var(--radius-sm);">
+                    <p class="mb-sm" style="background: var(--color-primary); padding: var(--space-sm);">margin-bottom: small</p>
+                    <p class="mb-md" style="background: var(--color-primary); padding: var(--space-sm);">margin-bottom: medium</p>
+                    <p class="mb-lg" style="background: var(--color-primary); padding: var(--space-sm);">margin-bottom: large</p>
+                    <p class="text-center mt-xl mb-0" style="background: var(--color-primary); padding: var(--space-sm);">text-center + margin-top: xl</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTE 12: CSS VARIABLES
+             ============================================ -->
+        <section id="variables" class="component-section">
+            <h2 class="component-title">🎨 CSS Variables Reference</h2>
+            <p class="component-description">
+                Tutte le variabili CSS disponibili nel sistema. Usa queste variabili per 
+                mantenere consistenza nel design.
+            </p>
+
+            <div class="code-tabs">
+                <button class="code-tab active" onclick="showTab(event, 'vars-css')">CSS Variables</button>
+                <button class="code-tab" onclick="showTab(event, 'vars-usage')">Come Usarle</button>
+            </div>
+
+            <div id="vars-css" class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="selector">:root</span> {
+  <span class="comment">/* Colori */</span>
+  <span class="property">--color-primary</span>: <span class="value">#f6c7c3</span>;
+  <span class="property">--color-primary-dark</span>: <span class="value">#d9b6b3</span>;
+  <span class="property">--color-primary-darker</span>: <span class="value">#c4a3a1</span>;
+  <span class="property">--color-text</span>: <span class="value">#574240</span>;
+  <span class="property">--color-text-accent</span>: <span class="value">#64070d</span>;
+  <span class="property">--color-text-light</span>: <span class="value">#8b7573</span>;
+  <span class="property">--color-bg-white</span>: <span class="value">#ffffff</span>;
+  <span class="property">--color-bg-light</span>: <span class="value">#f9f9f9</span>;
+  
+  <span class="comment">/* Spacing */</span>
+  <span class="property">--space-xs</span>: <span class="value">0.25rem</span>;  <span class="comment">/* 4px */</span>
+  <span class="property">--space-sm</span>: <span class="value">0.5rem</span>;   <span class="comment">/* 8px */</span>
+  <span class="property">--space-md</span>: <span class="value">1rem</span>;     <span class="comment">/* 16px */</span>
+  <span class="property">--space-lg</span>: <span class="value">1.5rem</span>;   <span class="comment">/* 24px */</span>
+  <span class="property">--space-xl</span>: <span class="value">2rem</span>;     <span class="comment">/* 32px */</span>
+  <span class="property">--space-2xl</span>: <span class="value">2.5rem</span>;  <span class="comment">/* 40px */</span>
+  <span class="property">--space-3xl</span>: <span class="value">3rem</span>;    <span class="comment">/* 48px */</span>
+  
+  <span class="comment">/* Font sizes */</span>
+  <span class="property">--font-xs</span>: <span class="value">0.9rem</span>;
+  <span class="property">--font-sm</span>: <span class="value">1rem</span>;
+  <span class="property">--font-md</span>: <span class="value">1.1rem</span>;
+  <span class="property">--font-lg</span>: <span class="value">1.2rem</span>;
+  <span class="property">--font-xl</span>: <span class="value">1.4rem</span>;
+  <span class="property">--font-2xl</span>: <span class="value">1.6rem</span>;
+  <span class="property">--font-3xl</span>: <span class="value">1.8rem</span>;
+  <span class="property">--font-4xl</span>: <span class="value">2.2rem</span>;
+  <span class="property">--font-5xl</span>: <span class="value">5rem</span>;
+  
+  <span class="comment">/* Border radius */</span>
+  <span class="property">--radius-sm</span>: <span class="value">8px</span>;
+  <span class="property">--radius-md</span>: <span class="value">12px</span>;
+  <span class="property">--radius-lg</span>: <span class="value">15px</span>;
+  
+  <span class="comment">/* Shadows */</span>
+  <span class="property">--shadow-sm</span>: <span class="value">0 2px 8px rgba(0, 0, 0, 0.05)</span>;
+  <span class="property">--shadow-md</span>: <span class="value">0 4px 15px rgba(0, 0, 0, 0.1)</span>;
+  <span class="property">--shadow-lg</span>: <span class="value">0 8px 25px rgba(0, 0, 0, 0.15)</span>;
+  
+  <span class="comment">/* Transitions */</span>
+  <span class="property">--transition-fast</span>: <span class="value">0.2s ease</span>;
+  <span class="property">--transition-base</span>: <span class="value">0.3s ease</span>;
+}</code></pre>
+            </div>
+
+            <div id="vars-usage" class="code-block" style="display: none;">
+                <button class="copy-btn" onclick="copyCode(this)">Copia</button>
+                <pre><code><span class="comment">/* Come usare le variabili CSS */</span>
+
+<span class="comment">/* Esempio 1: Colori */</span>
+<span class="selector">.my-element</span> {
+  <span class="property">background</span>: <span class="value">var(--color-primary)</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text)</span>;
+}
+
+<span class="comment">/* Esempio 2: Spacing */</span>
+<span class="selector">.my-card</span> {
+  <span class="property">padding</span>: <span class="value">var(--space-lg)</span>;
+  <span class="property">margin-bottom</span>: <span class="value">var(--space-xl)</span>;
+  <span class="property">gap</span>: <span class="value">var(--space-md)</span>;
+}
+
+<span class="comment">/* Esempio 3: Font sizes */</span>
+<span class="selector">.my-title</span> {
+  <span class="property">font-size</span>: <span class="value">var(--font-4xl)</span>;
+}
+
+<span class="comment">/* Esempio 4: Border radius & Shadow */</span>
+<span class="selector">.my-box</span> {
+  <span class="property">border-radius</span>: <span class="value">var(--radius-md)</span>;
+  <span class="property">box-shadow</span>: <span class="value">var(--shadow-lg)</span>;
+}
+
+<span class="comment">/* Esempio 5: Transitions */</span>
+<span class="selector">.my-button</span> {
+  <span class="property">transition</span>: <span class="value">all var(--transition-base)</span>;
+}</code></pre>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-label">📱 PREVIEW - Color Palette</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-md);">
+                    <div style="background: var(--color-primary); padding: var(--space-lg); border-radius: var(--radius-sm); text-align: center;">
+                        <strong>Primary</strong><br>#f6c7c3
+                    </div>
+                    <div style="background: var(--color-primary-dark); padding: var(--space-lg); border-radius: var(--radius-sm); text-align: center;">
+                        <strong>Primary Dark</strong><br>#d9b6b3
+                    </div>
+                    <div style="background: var(--color-primary-darker); padding: var(--space-lg); border-radius: var(--radius-sm); text-align: center; color: white;">
+                        <strong>Primary Darker</strong><br>#c4a3a1
+                    </div>
+                    <div style="background: var(--color-text); padding: var(--space-lg); border-radius: var(--radius-sm); text-align: center; color: white;">
+                        <strong>Text</strong><br>#574240
+                    </div>
+                    <div style="background: var(--color-text-accent); padding: var(--space-lg); border-radius: var(--radius-sm); text-align: center; color: white;">
+                        <strong>Text Accent</strong><br>#64070d
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Funzione per switchare tra tabs
+        function showTab(event, tabId) {
+            // Nascondi tutti i code blocks nella stessa sezione
+            const section = event.target.closest('.component-section');
+            const codeBlocks = section.querySelectorAll('.code-block');
+            codeBlocks.forEach(block => block.style.display = 'none');
+            
+            // Rimuovi classe active da tutti i tab nella stessa sezione
+            const tabs = section.querySelectorAll('.code-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Mostra il code block selezionato
+            document.getElementById(tabId).style.display = 'block';
+            
+            // Aggiungi classe active al tab cliccato
+            event.target.classList.add('active');
+        }
+        
+        // Funzione per copiare codice
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const code = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✓ Copiato!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copia';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Errore nella copia:', err);
+                button.textContent = '✗ Errore';
+            });
+        }
+        
+        // Smooth scroll per i link di navigazione
+        document.querySelectorAll('.doc-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Log per debug
+        console.log('📚 Documentazione Componenti CSS caricata con successo!');
+        console.log('💡 Tip: Usa i tab per vedere CSS e HTML di ogni componente');
+        console.log('📋 Tip: Clicca "Copia" per copiare il codice negli appunti');
+    </script>
+</body>
+</html>

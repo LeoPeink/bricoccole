@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRICOCCOLE | Showcase Componenti CSS</title>
+    <link rel="stylesheet" type="text/css" href="css/stile_bricoccole.css">
+    <meta name="description" content="Esempio completo di tutte le componenti CSS">
+</head>
+
+<body>
+    <div class="main-container">
+        
+        <!-- ========================================
+             1. HEADER SECTION
+             ======================================== -->
+        <header class="header-section">
+            <h1 class="site-title">Bricoccole</h1>
+            <p class="site-subtitle">The cutest British Shorthairs in town!</p>
+        </header>
+
+        <!-- ========================================
+             2. NAVIGATION CARDS (8 colonne desktop, 2 tablet, 1 mobile)
+             ======================================== -->
+        <nav class="nav-cards-container">
+            <a href="/index" class="nav-card">
+                <h3 class="nav-card-title">🏠 HOME</h3>
+                <p class="nav-card-description">Pagina principale</p>
+            </a>
+            
+            <a href="/cubs" class="nav-card">
+                <h3 class="nav-card-title">🐾 CUCCIOLI</h3>
+                <p class="nav-card-description">I nostri piccoli</p>
+            </a>
+            
+            <a href="/who_we_are" class="nav-card">
+                <h3 class="nav-card-title">👨🏻‍👩🏻‍👧🏻‍👧🏻 CHI SIAMO</h3>
+                <p class="nav-card-description">La nostra storia</p>
+            </a>
+            
+            <a href="/contacts" class="nav-card">
+                <h3 class="nav-card-title">💌 CONTATTI</h3>
+                <p class="nav-card-description">Come raggiungerci</p>
+            </a>
+            
+            <a href="/links" class="nav-card">
+                <h3 class="nav-card-title">🔗 LINKS</h3>
+                <p class="nav-card-description">Collegamenti utili</p>
+            </a>
+            
+            <a href="/news" class="nav-card">
+                <h3 class="nav-card-title">📰 NEWS</h3>
+                <p class="nav-card-description">Ultime notizie</p>
+            </a>
+            
+            <a href="/our_cats" class="nav-card">
+                <h3 class="nav-card-title">🐱 I NOSTRI GATTI</h3>
+                <p class="nav-card-description">I riproduttori</p>
+            </a>
+            
+            <a href="/the_British_Shorthair" class="nav-card">
+                <h3 class="nav-card-title">👑 BRITISH SHORTHAIR</h3>
+                <p class="nav-card-description">La razza</p>
+            </a>
+        </nav>
+
+        <!-- ========================================
+             3. MAIN CONTENT AREA (2 colonne desktop, 1 colonna mobile)
+             ======================================== -->
+        <main class="main-content-area">
+            
+            <!-- SEZIONE CONTENUTO PRINCIPALE -->
+            <section class="content-section">
+                <h2 class="section-title">Ultime Notizie</h2>
+                
+                <!-- FEATURED ARTICLE (Articolo in evidenza) -->
+                <article class="featured-article">
+                    <div class="article-content">
+                        <h3 class="article-title">Sgorbio vincitore di Expo Bologna 2025!</h3>
+                        <p class="article-date">10 Maggio 2025</p>
+                        <p class="article-text">
+                            Il nostro piccolo <a href="/disponibili">Sgorbio</a> ha vinto il 
+                            <strong>best in show</strong> durante l'Expo Felina di Bologna 2025! 
+                            Un traguardo incredibile che conferma la qualità del nostro allevamento.
+                        </p>
+                    </div>
+                    <div class="article-image">
+                        <img src="/media/sgorbio4.png" alt="Sgorbio con coccarda vincitrice" class="featured-image">
+                    </div>
+                </article>
+
+                <!-- SECONDARY NEWS (Notizie secondarie) -->
+                <div class="secondary-news">
+                    <article class="news-item">
+                        <h4 class="news-title">Nuovi cuccioli in arrivo</h4>
+                        <p class="news-date">5 Novembre 2025</p>
+                        <p class="news-summary">
+                            La nostra gatta Duchess aspetta dei bellissimi cuccioli per gennaio! 
+                            Le prenotazioni sono già aperte.
+                        </p>
+                    </article>
+                    
+                    <article class="news-item">
+                        <h4 class="news-title">Certificazione di eccellenza</h4>
+                        <p class="news-date">20 Ottobre 2025</p>
+                        <p class="news-summary">
+                            BRICOCCOLE riceve il riconoscimento per l'allevamento responsabile 
+                            dall'Associazione Nazionale Felini.
+                        </p>
+                    </article>
+
+                    <article class="news-item">
+                        <h4 class="news-title">Open Day questo weekend</h4>
+                        <p class="news-date">1 Ottobre 2025</p>
+                        <p class="news-summary">
+                            Venite a conoscere i nostri gatti sabato e domenica dalle 10 alle 18. 
+                            Ingresso libero, prenotazione consigliata.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Esempio con UTILITY CLASSES -->
+                <div class="mt-xl">
+                    <h3 class="mb-md">Esempio Utility Classes</h3>
+                    <p class="mb-sm">Questo paragrafo ha margin-bottom small</p>
+                    <p class="mb-md">Questo ha margin-bottom medium</p>
+                    <p class="mb-lg">Questo ha margin-bottom large</p>
+                    <p class="text-center mt-xl">Questo testo è centrato con margin-top extra large</p>
+                </div>
+            </section>
+
+            <!-- SIDEBAR INFO -->
+            <aside class="info-sidebar">
+                <!-- INFO CARD -->
+                <div class="info-card">
+                    <h3 class="info-title">Perché scegliere BRICOCCOLE?</h3>
+                    <ul class="benefits-list">
+                        <li>✓ Allevamento con 14 anni di esperienza</li>
+                        <li>✓ Salute certificata dai migliori veterinari</li>
+                        <li>✓ Pedigree d'eccellenza</li>
+                        <li>✓ Supporto post-adozione</li>
+                        <li>✓ Gatti socializzati e affettuosi</li>
+                    </ul>
+                </div>
+                
+                <!-- CONTACT CARD -->
+                <div class="contact-card">
+                    <h3 class="contact-title">Contatti Rapidi</h3>
+                    <p class="contact-info">📧 info@bricoccole.it</p>
+                    <p class="contact-info">📱 +39 123 456 7890</p>
+                    <p class="contact-info">📍 Milano, Italia</p>
+                    <p class="contact-info">🕐 Lun-Ven: 9:00-18:00</p>
+                </div>
+
+                <!-- GALLERY PLACEHOLDER -->
+                <div class="info-card">
+                    <h3 class="info-title">Galleria Foto</h3>
+                    <p class="contact-info">
+                        Scopri le foto dei nostri gatti nella sezione 
+                        <a href="/gallery">Galleria</a>
+                    </p>
+                </div>
+            </aside>
+            
+        </main>
+
+        <!-- ========================================
+             4. SEZIONE EXTRA: ESEMPI DI CARDS
+             ======================================== -->
+        <section class="content-section mt-xl">
+            <h2 class="section-title">I Nostri Servizi</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg);">
+                <div class="info-card">
+                    <h3 class="info-title">🏥 Salute</h3>
+                    <p>Tutti i nostri gatti sono seguiti da veterinari specializzati in felini.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3 class="info-title">📜 Pedigree</h3>
+                    <p>Pedigree completi certificati ANFI per ogni cucciolo.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3 class="info-title">💝 Post-Adozione</h3>
+                    <p>Supporto continuo anche dopo l'adozione del tuo cucciolo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             5. FOOTER
+             ======================================== -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>BRICOCCOLE Allevamento</h4>
+                    <p class="footer-text">Allevamento British Shorthair dal 2011</p>
+                    <p class="footer-text">Registrato ANFI n. XXXX</p>
+                    <address class="footer-address">
+                        Email: <a href="mailto:info@bricoccole.it">info@bricoccole.it</a>
+                    </address>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Seguici</h4>
+                    <p class="footer-text">📱 Instagram: @bricoccole</p>
+                    <p class="footer-text">📘 Facebook: Bricoccole</p>
+                    <p class="footer-text">&copy; 2025 BRICOCCOLE</p>
+                    <p class="footer-text">P.IVA: 12345678901</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ========================================
+         DEMO: VARIABILI CSS IN USO
+         ======================================== -->
+    <style>
+        /* Esempio di come usare le variabili CSS per componenti custom */
+        .custom-box {
+            background: var(--color-bg-white);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            color: var(--color-text);
+        }
+        
+        .custom-button {
+            padding: var(--space-md) var(--space-lg);
+            background: var(--color-primary-dark);
+            color: var(--color-text);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .custom-button:hover {
+            background: var(--color-primary-darker);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+    </style>
+
+    <!-- Esempio di componente custom usando le variabili -->
+    <div class="main-container">
+        <div class="custom-box mt-xl">
+            <h3 style="margin-bottom: var(--space-md);">Componente Custom</h3>
+            <p style="margin-bottom: var(--space-md);">
+                Questo è un esempio di come creare componenti custom riutilizzando 
+                le variabili CSS definite. Mantiene consistenza con il resto del design!
+            </p>
+            <button class="custom-button">Clicca qui</button>
+        </div>
+    </div>
+
+</body>
+</html>

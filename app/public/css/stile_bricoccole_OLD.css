@@ -1,0 +1,489 @@
+/*background color will be f6c7c3*/
+/* text color will be #574240*/
+/* other color #bfa5a3
+/* matching palette #d9b6b3 #e8c9c5 #c4a3a1 */
+/*@import url("https://fonts.googleapis.com/css2?family=Playwrite+GB+S&display=swap");*/
+
+@import url(fonts_bricoccole.css);
+
+body {
+    background-color: #f6c7c3;
+    color: #574240;
+    color: #64070d;
+    /*font-family: "Playwrite GB S", cursive;*/
+    /*import font monotype cursiva from local folder /public/media/fonts*/
+    font-family: "Monotype Corsiva", cursive;
+    font-optical-sizing: auto;
+    font-size: 1.5rem; /* Changed from em to rem for consistency */
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* MAIN LAYOUT */
+.main-container {
+    max-width: 80%; /*edit this to remove sidebars on wider screens*/
+     margin: 0 auto;/* Center the container horizontally */
+    /*padding: 20px;  Inner spacing around all content */
+}
+
+/* HEADER SECTION */
+.header-section {
+    text-align: center;
+    /*margin-bottom: 40px;  Space between header and navigation cards */
+    /*padding: 30px 0;  Vertical padding above and below header content */
+}
+
+.site-title {
+    font-size: 5rem; /* Changed from em to rem for consistency */
+    margin: 0 0 0 0; /* Commented out: small bottom margin for title */
+    color: #574240;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+}
+
+.site-subtitle {
+    font-size: 2rem;
+    margin: 0 0 2% 0; /* No margin around subtitle */
+    /*color: #574240;*/
+    color: #64070d;
+    opacity: 0.8;
+}
+
+/* NAVIGATION CARDS */
+.nav-cards-container {
+    display: grid;
+    /*grid-template-columns: repeat(4, minmax(250px, 1fr));
+    /*grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1.25rem; /* Changed px to rem: Space between navigation cards */
+    margin-bottom: 2.5rem; /* Changed px to rem: Space between nav cards and main content */
+    
+}
+
+.nav-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 3% 3%; /* Vertical 5%, horizontal 5% for compact rectangular shape */
+    text-decoration: none;
+    color: #574240;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    min-height: 60px;
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);    
+    background-color: #f9f9f9;
+}
+
+/*
+.nav-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 2px; /* Tiny space between icon and title *//*
+} */
+
+.nav-card-title {
+    font-size: 1.2rem; /* Already rem - consistent */
+    margin: 0 5% 0 0; /* Small top margin, no other margins for compact look */
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.nav-card-description {
+    font-size: 1rem; /* Already rem - consistent */
+    margin: 0; /* No margin around description text */
+    opacity: 0.6;
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* MAIN CONTENT AREA */
+.main-content-area {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem; /* Changed px to rem: Space between main content and sidebar */
+    margin-bottom: 2.5rem; /* Changed px to rem: Space between main content and footer */
+}
+
+/* CONTENT SECTION */
+.content-section {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem; /* Changed px to rem: Inner spacing around all content section elements */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    font-size: 2.2rem; /* Already rem - consistent */
+    margin: 0 0 1.5rem 0; /* Changed px to rem: Bottom margin to separate title from content */
+    color: #574240;
+    border-bottom: 3px solid #bfa5a3;
+    padding-bottom: 0.6rem; /* Changed px to rem: Space between title text and bottom border */
+}
+
+/* FEATURED ARTICLE */
+.featured-article {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem; /* Changed px to rem: Space between article text and image */
+    margin-bottom: 2rem; /* Changed px to rem: Space between featured article and secondary news */
+    padding: 1.25rem; /* Changed px to rem: Inner spacing around article content */
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.article-title {
+    font-size: 1.8rem; /* Already rem - consistent */
+    margin: 0 0 0.6rem 0; /* Changed px to rem: Bottom margin between title and date */
+    color: #574240;
+}
+
+.article-date {
+    font-size: 1rem; /* Already rem - consistent */
+    color: #bfa5a3;
+    margin: 0 0 0.9rem 0; /* Changed px to rem: Bottom margin between date and article text */
+    font-style: italic;
+}
+
+.article-text {
+    font-size: 1.2rem; /* Already rem - consistent */
+    line-height: 1.6;
+    margin: 0; /* No margin around article text */
+}
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* SECONDARY NEWS */
+.secondary-news {
+    display: grid;
+    gap: 1.25rem; /* Changed px to rem: Space between individual news items */
+}
+
+.news-item {
+    padding: 1.25rem; /* Changed px to rem: Inner spacing around each news item content */
+    background: white;
+    border-left: 4px solid #bfa5a3;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.news-title {
+    font-size: 1.4rem; /* Already rem - consistent */
+    margin: 0 0 0.3rem 0; /* Changed px to rem: Bottom margin between news title and date */
+    color: #574240;
+}
+
+.news-date {
+    font-size: 0.9rem; /* Already rem - consistent */
+    color: #bfa5a3;
+    margin: 0 0 0.6rem 0; /* Changed px to rem: Bottom margin between date and news summary */
+    font-style: italic;
+}
+
+.news-summary {
+    font-size: 1.1rem; /* Already rem - consistent */
+    line-height: 1.5;
+    margin: 0; /* No margin around news summary text */
+}
+
+/* INFO SIDEBAR */
+.info-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Changed px to rem: Space between sidebar cards (info-card and contact-card) */
+}
+
+.info-card, .contact-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem; /* Changed px to rem: Inner spacing around sidebar card content */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.info-title, .contact-title {
+    font-size: 1.6rem; /* Already rem - consistent */
+    margin: 0 0 1.25rem 0; /* Changed px to rem: Bottom margin between titles and content */
+    color: #574240;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0; /* Remove default list padding */
+    margin: 0; /* Remove default list margin */
+}
+
+.benefits-list li {
+    padding: 0.5rem 0; /* Changed px to rem: Vertical padding for each benefit item */
+    font-size: 1.1rem; /* Already rem - consistent */
+    color: #574240;
+}
+
+.contact-info {
+    font-size: 1.1rem; /* Already rem - consistent */
+    margin: 0.6rem 0; /* Changed px to rem: Vertical margin around contact info items */
+    color: #574240;
+}
+
+/* SITE FOOTER */
+.site-footer {
+    background: #d9b6b3;
+    border-radius: 15px;
+    padding: 2rem; /* Changed px to rem: Inner spacing around footer content */
+    margin-top: 2.5rem; /* Changed px to rem: Space between main content and footer */
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem; /* Changed px to rem: Space between footer sections */
+}
+
+.footer-section h4 {
+    font-size: 1.4rem; /* Already rem - consistent */
+    margin: 0 0 1rem 0; /* Changed px to rem: Bottom margin between footer headings and content */
+    color: #574240;
+}
+
+.footer-address {
+    font-style: normal;
+}
+
+.footer-address a {
+    color: #574240;
+    text-decoration: none;
+}
+
+.footer-address a:hover {
+    text-decoration: underline;
+}
+
+.footer-text {
+    margin: 0.3rem 0; /* Changed px to rem: Small vertical margin around footer text lines */
+    color: #574240;
+    opacity: 0.8;
+}
+
+.form-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.page-header {
+    margin-bottom: 3rem;
+}
+
+.page-title {
+    font-size: 6rem;
+    margin: 0 0 1rem 0;
+    color: #574240;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+}
+
+.page-subtitle {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #574240;
+    opacity: 0.8;
+}
+
+.form-container {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    min-width: 350px;
+}
+
+.form-style {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-input {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid #c4a3a1;
+    border-radius: 12px;
+    font-family: "Monotype Corsiva", cursive;
+    color: #574240;
+    background-color: #fefefe;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #8b7573;
+    box-shadow: 0 0 0 3px rgba(139, 117, 115, 0.3);
+    background-color: white;
+}
+
+.form-input::placeholder {
+    color: #8b7573;
+    opacity: 0.8;
+}
+
+.form-button {
+    padding: 1.2rem 2rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: "Monotype Corsiva", cursive;
+    color: white;
+    background: linear-gradient(135deg, #c4a3a1, #a89290);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.form-button:hover {
+    background: linear-gradient(135deg, #a89290, #8b7573);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.form-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1000px) {
+    .nav-cards-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .main-content-area {
+        grid-template-columns: 1fr;
+        /*center content*/
+        justify-items: center;
+    }
+    
+    .featured-article {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .nav-cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-card {
+        min-height: 100px;
+        padding: 3% 1%; /* Mobile: more vertical padding, less horizontal for touch targets */
+    }
+    
+    .nav-card-title {
+        font-size: 1.5rem;
+    }
+    
+    .site-title {
+        font-size: 2rem;
+    }
+    
+    .page-title {
+        font-size: 4rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .form-container {
+        min-width: 280px;
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-input, .form-button {
+        font-size: 1rem;
+    }
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    color: #574240;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* QUICK FONT CHANGE *//*
+*{
+  font-family:'Comic Sans MS';
+}
+*/
+/* CUTE PAW DECORATIONS *//*
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: -1;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(circle at 20px 20px, #d9b6b3 8px, transparent 8px),
+        radial-gradient(circle at 35px 35px, #d9b6b3 4px, transparent 4px),
+        radial-gradient(circle at 15px 35px, #d9b6b3 4px, transparent 4px),
+        radial-gradient(circle at 25px 45px, #d9b6b3 4px, transparent 4px),
+        radial-gradient(circle at 35px 45px, #d9b6a3 4px, transparent 4px);
+    background-size: 60px 80px;
+    background-repeat: repeat-y;
+    opacity: 0.3;
+}
+
+body::before {
+    left: 0;
+    animation: pawWalkDown 20s linear infinite;
+}
+
+body::after {
+    right: 0;
+    animation: pawWalkUp 25s linear infinite;
+    transform: scaleX(-1); /*Mirror the paw on the right side*//*
+}
+
+@keyframes pawWalkDown {
+    0% { background-position-y: -80px; }
+    100% { background-position-y: 100vh; }
+}
+
+@keyframes pawWalkUp {
+    0% { background-position-y: 100vh; }
+    100% { background-position-y: -80px; }
+}
+
+/*Hide paws on smaller screens to keep content clear *//*
+@media (max-width: 1400px) {
+    body::before,
+    body::after {
+        display: none;
+    }
+}*/
