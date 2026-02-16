@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<!-- AUTO - SCRIPT COMPONENTLOADER 
-<script src="../js/componentLoader.js" defer></script>-->
+<!-- AUTO - SCRIPT COMPONENTLOADER -->
+<script src="../js/componentLoader.js" defer></script>
+<script src="../js/login.js" defer></script>
 
 <!-- AUTO - HEAD METADATA SECTION -->
 <div id="meta_head"></div>
@@ -10,9 +11,9 @@
     <div class="form-page-container">
         
         <!-- LOGO/TITOLI -->
-        <header class="page-header">
-            <h1 class="page-title">Bricoccole</h1>
-            <p class="page-subtitle">🔐Area riservata</p>
+        <header class="header-section">
+            <h1 class="site-title">Bricoccole</h1>
+            <p class="site-subtitle">🔐Area riservata</p>
         </header>
 
         <!-- FORM DI LOGIN -->
@@ -22,7 +23,8 @@
                 <input type="password" name="password" placeholder="Password" class="form-input" required>
                 <input type="submit" value="Accedi" class="form-button">
             </form>
-        </div>
+        <div id="error-message" class="error-message">Nome utente o password errati.</div>
+    </div>
         <a href="/index" class="back-link">← Torna alla Home</a>
     </div>
 

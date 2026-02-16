@@ -1,87 +1,73 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRICOCCOLE | British Cuddles</title>
-    <link rel="stylesheet" type="text/css" href="css/stile_bricoccole.css">
-    <meta name="description" content="Allevamento di gatti di razza, BRICOCCOLE">
-    <meta name="keywords" content="gatti, razza, allevamento, BRICOCCOLE, gattini">
-</head>
+
+<!-- AUTO - SCRIPT COMPONENTLOADER -->
+<script src="/js/componentLoader.js" defer></script>
+
+<!-- AUTO - HEAD METADATA SECTION -->
+<div id="meta_head"></div>
 
 <body>
-    <main class="main-container"> 
-        <header>
-            <h1 id="titolo-sito">BRICOCCOLE</h1> <!-- Titolo principale [16] -->
-            <h3>The cutest British Shorthairs in town!</h3>
-        </header>
+    <div class="main-container">
+        <!-- AUTO - HEADER SECTION -->
+        <div id="header"></div>
+        <!-- AUTO - NAVIGATION CARDS -->
+        <div id="navbar"></div>
 
-        <!-- Nav //TODO rendila dinamica -->
-        <nav>
-            <ul>
-                <!-- li: Elemento di lista (list item) -->
-                <li><a href="/home">home</a></li>
-                <li><a href="/cubs">cubs</a></li>
-                <li><a href="/who_we_are">who we are</a></li>
-                <li><a href="/contacts">contacts</a></li>
-                <li><a href="/links">links</a></li>
-                <li><a href="/news">news</a></li>
-                <li><a href="/our_cats">our cats</a></li>
-                <li><a href="/the_British_Shorthair">the British Shorthair</a></li>
-            </ul>
-        </nav>
-
-        <!-- //TODO sistema login - fake login that brings to /privata.html: --> 
-        <div class="login-container">
-            <form action="/privata">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-            <input type="submit" value="Login" />
-            </form>
-        </div>
-
-        <!-- Section 1: News mobili? -->
-        <section class="news-section">
-            <h2>News BRICOCCOLE</h2>
-            <article class="news-article">
-                <div>
-                <h3>Titolo della news</h3>
-                <h4>10 Maggio 2025</h4>
-                <p>Il nostro piccolo <a href="/disponibili">Sgorbio</a> ha visto il <strong>best in show</strong> durante l'Expo Felina di Bologna 2025!</p>
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content-area">
+            <!-- NEWS/CONTENT SECTION -->
+            <section class="content-section">
+                <h2 class="section-title">News BRICOCCOLE</h2>
+                <!-- Featured News Article -->
+                <article class="featured-article">
+                    <div class="article-content">
+                        <h3 class="article-title">Sgorbio vincitore di Expo Bologna 2025!</h3>
+                        <p class="article-date">10 Maggio 2025</p>
+                        <p class="article-text">Il nostro piccolo <a href="/disponibili">Sgorbio</a> ha visto il <strong>best in show</strong> durante l'Expo Felina di Bologna 2025!</p>
+                    </div>
+                    <div class="article-image">
+                        <img src="/media/sgorbio4.png" alt="Sgorbio con coccarda" class="featured-image">
+                    </div>
+                </article>
+                <!-- Secondary News -->
+                <div class="secondary-news">
+                    <article class="news-item">
+                        <h4 class="news-title">//PLACEHOLDER - SECONDA NEWS</h4>
+                        <p class="news-date">dd MMMMM yyyy</p>
+                        <p class="news-summary">Qui il testo del prossimo articolo! L'idea è farli girare, dai più recenti a quelli meno recenti. Cliccando sull'articolo, si potrebbe aprire a pagina intera.</p>
+                    </article>
                 </div>
-                <img src="/media/sgorbio4.png" alt="Sgorbio con coccarda" class="cat-image">
-                <!-- img: Elemento per l'immagine; richiede attributo src e alt [22-24] -->
-            </article>
-            <article class="news-article">
-                <div class = "newsText">
-                <h3>//PLACEHOLDER - SECONDA NEWS</h3>
-                <h4>dd MMMMM yyyy</h4>
-                <p>Qui il testo del prossimo articolo! L'idea è farli girare, dai più recenti a quelli meno recenti. Cliccando sull'articolo, si potrebbe aprire a pagina intera.</p>
+            </section>
+            <!-- SIDEBAR INFO -->
+            <aside class="info-sidebar">
+                <div class="info-card">
+                    <h3 class="info-title">Perché scegliere BRICOCCOLE?</h3>
+                    <ul class="benefits-list">
+                        <li>✓ Allevamento con 14 anni di esperienza</li>
+                        <li>✓ Salute certificata dai migliori veterinari</li>
+                        <li>✓ Pedigree d'eccellenza</li>
+                        <li>✓ Supporto post-adozione</li>
+                    </ul>
                 </div>
-            </article>
-        </section>
-        
-        <!-- Aside: Contenuto collaterale o ortogonale rispetto al contenuto principale [7, 16, 19, 20] -->
-        <aside class="sidebar">
-            <h3>Perché scegliere BRICOCCOLE?</h3>
-            <ul>
-                <li>Allevamento a 360° con 14 anni di esperienza</li>
-                <li>Salute Certificata dai migliori veterinari</li>
-                <li>Pedigree d'Eccellenza</li>
-                <li>Supporto e flessibilità Post-Adozione</li>
-            </ul>
-        </aside>
-
-        <!-- Footer: Informazioni finali legate alla sezione, come contatti e copyright [7, 16-18] -->
-        <footer id="contatti">
-            <h2>Contatti</h2>
-            <!-- address: Informazioni di contatto [16-18] -->
-            <address>
-                Email: <a href="mailto:info@bricoccole.it">info@bricoccole.it</a>
-            </address>
-            <p><small>&copy; 2024 BRICOCCOLE Allevamento.</small></p>
-            <p><small>P.IVA: 12345678901</small></p>
-        </footer>
-    </main>
+                <div class="contact-card">
+                    <h3 class="contact-title">Contatti Rapidi</h3>
+                    <p class="contact-info">📧 info@bricoccole.it</p>
+                    <p class="contact-info">📱 +39 123 456 7890</p>
+                </div>
+            </aside>
+        </main>
+        <!-- FOOTER -->
+        <footer id="footer" class="site-footer"></footer>
+    </div>
 </body>
 </html>
+
+<!-- LOGIN SECTION (Optional - can be moved to header corner)
+<div class="login-section">
+    <form action="/privata" class="login-form">
+        <input type="text" placeholder="Username" class="login-input">
+        <input type="password" placeholder="Password" class="login-input">
+        <input type="submit" value="Area Riservata" class="login-button">
+    </form>
+</div> -->

@@ -10,7 +10,7 @@ const { ObjectId } = require("mongodb");
 router.post("/auth/signin", async (req, res) => {
   const { username, password } = req.body; 
   //print debug line on server
-  console.log("Attempting login for user:", username , "with password:", password); //TODO DELETE ME
+  console.log("Attempting login for user:", username , "with password:", password, 'DELETE ME!!!'); //TODO DELETE ME
   const u = { username, password }; //pulizia del body
   try {
     const user = await dbOperator.askDbOneDocument("users", u);
@@ -23,8 +23,8 @@ router.post("/auth/signin", async (req, res) => {
       console.log("USER " + user.username + " LOGGED IN!");
       res.redirect("/index");
     } else {
-      console.log("LOGIN ERROR!");
-      //res.status(403).redirect("/login");
+      console.log("LOGIN ERROR!"); //log the error on server
+      res.status(401).redirect("/login?error=1"); //redirect to login with error query parameter
     }
   } catch (error) {
     throw new Error(error);
