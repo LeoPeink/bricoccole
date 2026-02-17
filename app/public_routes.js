@@ -30,6 +30,53 @@ router.post("/auth/signin", async (req, res) => {
     throw new Error(error);
   }
 });
+
+/**
+ * GET /api/news
+ * 
+ * Restituisce l'elenco delle news dalla collection "news" di MongoDB.
+ * Le news sono ordinate dalla più recente alla più vecchia.
+ * 
+ * Query params opzionali:
+ *   ?limit=N    → limita il numero di news restituite (default: 10)
+ *   ?featured=1 → restituisce solo la news in primo piano (featured: true)
+ * 
+ * Struttura attesa di ogni documento nella collection "news":
+ * {
+ *   title:    string,       // Titolo della news
+ *   date:     Date,         // Data di pubblicazione
+ *   summary:  string,       // Testo breve / sommario
+ *   text:     string,       // Testo completo (opzionale)
+ *   image:    string,       // Path immagine (opzionale, es. "/media/foto.png")
+ *   imageAlt: string,       // Alt text immagine (opzionale)
+ *   link:     string,       // Link collegato (opzionale, es. "/disponibili")
+ *   featured: boolean       // Se true, viene mostrata come articolo in evidenza
+ * }
+ */
+
+//LETTURA DI TUTTE LE NEWS, CON FILTRI
+router.get("/news", async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    const query = {};
+
+    if (req.query.featured === "1") {
+      query.featured = true;
+    }
+
+    const result = await dbOperator.askDbAllDocuments(
+      "news",
+      query,
+      { date: -1 }, // ordine: dalla più recente
+      limit
+    );
+
+    res.json(result);
+  } catch (error) {
+    console.error("Errore durante il recupero delle news:", error);
+    res.status(500).json({ message: "Errore durante il recupero delle news" });
+  }
+});
 /*
 //REGISTRAZIONE DI UN UTENTE
 router.post("/auth/signup", async (req, res) => {

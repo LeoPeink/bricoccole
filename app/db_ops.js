@@ -3,33 +3,29 @@ const { connectToDatabase, disconnectFromDatabase } = require("./db"); // Import
 const express = require("express");
 const app = express(); //crea il server web
 
-/*
-//ottiene tutti i document in una collection
-async function askDbAllDocuments(collectionName, query={}) {
-  let db;
-  try
-  {
-    db = await connectToDatabase();
-    //const result = await db.collection(collectionName).find().toArray();
-    const result = await db.collection(collectionName).find(query).toArray();
-    //console.log(result);
-
-    if(result === null)
-    {
-      return {};
-    }
-    else
-    {
-      return result;
-    }
-  }
-  catch(error)
-  {
-    //console.log(error);
+/**
+ * Recupera tutti i documenti da una collection, con query opzionale.
+ * Supporta ordinamento e limite per le news.
+ * 
+ * @param {string} collectionName - Nome della collection MongoDB
+ * @param {object} query          - Filtro opzionale (default: {})
+ * @param {object} sort           - Ordinamento opzionale (default: {})
+ * @param {number} limit          - Numero massimo di risultati (default: 0 = tutti)
+ * @returns {Array}               - Array di documenti
+ */
+async function askDbAllDocuments(collectionName, query = {}, sort = {}, limit = 0) {
+  try {
+    const db = await connectToDatabase();
+    let cursor = db.collection(collectionName).find(query).sort(sort);
+    if (limit > 0) cursor = cursor.limit(limit);
+    const result = await cursor.toArray();
+    return result ?? [];
+  } catch (error) {
+    console.log(error);
     throw new Error("Errore nella lettura dal database");
   }
 }
-*/
+
 //cerca l'oggetto object  nel db
 async function askDbOneDocument(collectionName,query) {
   try
@@ -157,7 +153,7 @@ async function insertAuctionBid(objectId, bid) {
 
 module.exports = 
 {
-  //askDbAllDocuments,
+  askDbAllDocuments,
   askDbOneDocument,
   //insertDocument,
   //insertAuctionBid,

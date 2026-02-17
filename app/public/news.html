@@ -11,6 +11,7 @@
 
 <!-- AUTO - SCRIPT COMPONENTLOADER -->
 <script src="/js/componentLoader.js" defer></script>
+<script src="/js/news.js" defer></script>
 
 <!-- AUTO - HEAD METADATA SECTION -->
 <div id="meta_head"></div>
@@ -26,25 +27,19 @@
         <main class="main-content-area">
             <!-- NEWS/CONTENT SECTION -->
             <section class="content-section">
-                <h2 class="section-title">News BRICOCCOLE</h2>
-                <!-- Featured News Article -->
-                <article class="featured-article">
-                    <div class="article-content">
-                        <h3 class="article-title">Sgorbio vincitore di Expo Bologna 2025!</h3>
-                        <p class="article-date">10 Maggio 2025</p>
-                        <p class="article-text">Il nostro piccolo <a href="/disponibili">Sgorbio</a> ha visto il <strong>best in show</strong> durante l'Expo Felina di Bologna 2025!</p>
-                    </div>
-                    <div class="article-image">
-                        <img src="/media/sgorbio4.png" alt="Sgorbio con coccarda" class="featured-image">
-                    </div>
-                </article>
-                <!-- Secondary News -->
-                <div class="secondary-news">
-                    <article class="news-item">
-                        <h4 class="news-title">//PLACEHOLDER - SECONDA NEWS</h4>
-                        <p class="news-date">dd MMMMM yyyy</p>
-                        <p class="news-summary">Qui il testo del prossimo articolo! L'idea è farli girare, dai più recenti a quelli meno recenti. Cliccando sull'articolo, si potrebbe aprire a pagina intera.</p>
-                    </article>
+                <h2 class="section-title">News Bricoccole</h2>
+
+                <!-- Articolo in primo piano (popolato da news.js) -->
+                <div id="featured-news-container">
+                    <!-- Placeholder di caricamento -->
+                    <p class="news-summary" style="font-style: italic; color: var(--color-text-light);">
+                        Caricamento news...
+                    </p>
+                </div>
+
+                <!-- News secondarie (popolate da news.js) -->
+                <div class="secondary-news" id="news-list">
+                    <!-- Popolato dinamicamente -->
                 </div>
             </section>
             <!-- SIDEBAR INFO -->
