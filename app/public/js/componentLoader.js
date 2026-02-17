@@ -17,11 +17,13 @@
     }
   }
 
-  // Carica tutti gli include necessari
-  document.addEventListener("DOMContentLoaded", async () => {
-    //TODO make it dynamic, call the server and ask which components to load.
-    await loadInclude("#meta_head", "/components/meta_head.html");
-    await loadInclude("#header", "/components/header.html");
-    await loadInclude("#navbar", "/components/navbar.html");
-    await loadInclude("#footer", "/components/footer.html");
-  });
+  // Component loading con promise parallela e gestione della classe "ready" per l'effetto fade-in
+document.addEventListener("DOMContentLoaded", async () => {
+  await Promise.all([
+        loadInclude("#meta_head", "/components/meta_head.html"),
+        loadInclude("#header",    "/components/header.html"),
+        loadInclude("#navbar",    "/components/navbar.html"),
+        loadInclude("#footer",    "/components/footer.html"),
+    ]);
+    document.body.classList.add("ready");  
+});

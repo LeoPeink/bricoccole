@@ -32,7 +32,6 @@ async function askDbAllDocuments(collectionName, query={}) {
 */
 //cerca l'oggetto object  nel db
 async function askDbOneDocument(collectionName,query) {
-  
   try
   {
     const db = await connectToDatabase();

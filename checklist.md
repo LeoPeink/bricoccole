@@ -1,5 +1,3 @@
-
-
 * Pagina Il British Shorthair
 * DOPPIO SITO ITALIANO INGLESE!!!
 * Pagina Chi Siamo
@@ -14,8 +12,8 @@
 * Creatore di news
 * Creatore di gatti
 * Storico vittorie della cattery: lista di gatti con solo i nomi, ogni gatto pagina dedicata con descrizione dell'animale e link a:
-  	-pedigree
-  	-vittorie
+  -pedigree
+  -vittorie
 * HEARTROW tra una news e l'altra
 * cuoricini e nuvolette in giro
 * bordurine e filigrana automatica sulle foto?
@@ -37,4 +35,10 @@ Click su pedigree / risultati expo
 
 Cuccioli disponibili -> lista cuccioli preview tipo gatti
 
+
+
+
+
+Domande:
+-che tipi possono essere i test? Ita/eng? Negativo/nullo etc?
 

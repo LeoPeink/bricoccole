@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRICOCCOLE | British Cuddles</title>
-    <link rel="stylesheet" type="text/css" href="css/stile_bricoccole.css">
-    <meta name="description" content="Allevamento di gatti di razza, BRICOCCOLE">
-    <meta name="keywords" content="gatti, razza, allevamento, BRICOCCOLE, gattini">
+    <!-- CSS caricato subito, non via componentLoader -->
+    <link rel="stylesheet" href="/css/stile_bricoccole.css">
+    <title>BRICOCCOLE | Allevamento British Shorthair Trieste</title>
 </head>
 
 <body>
-    <main class="main-container"> 
+    <main class="main-container">
         <header>
             <h1 id="titolo-sito">BRICOCCOLE</h1> <!-- Titolo principale [16] -->
             <h3>The cutest British Shorthairs in town!</h3>
@@ -28,35 +28,36 @@
         </nav>
 
 
-       <!-- QUILL demo: textbox with buttons to insert new article or new cat.-->
+        <!-- QUILL demo: textbox with buttons to insert new article or new cat.-->
 
-            <h2>Area Riservata</h2>
-                
-                <h3>Benvenuto nell'area riservata!</h3>
-                <p>Qui puoi gestire i tuoi articoli e gatti. Usa i pulsanti qui sotto per iniziare.</p>
-                <!-- Include stylesheet -->
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+        <h2>Area Riservata</h2>
 
-<!-- Create the editor container -->
-<div id="editor">
-  <p>Hello World!</p>
-  <p>Some initial <strong>bold</strong> text</p>
-  <p><br /></p>
-</div>
+        <h3>Benvenuto nell'area riservata!</h3>
+        <p>Qui puoi gestire i tuoi articoli e gatti. Usa i pulsanti qui sotto per iniziare.</p>
+        <!-- Include stylesheet -->
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 
-<!-- Include the Quill library -->
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+        <!-- Create the editor container -->
+        <div id="editor">
+            <p>Hello World!</p>
+            <p>Some initial <strong>bold</strong> text</p>
+            <p><br /></p>
+        </div>
 
-<!-- Initialize Quill editor -->
-<script>
-  const quill = new Quill('#editor', {
-    theme: 'snow'
-  });
-</script>
+        <!-- Include the Quill library -->
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+        <!-- Initialize Quill editor -->
+        <script>
+            const quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+        </script>
 
 
-                <button onclick="alert('Funzione per aggiungere un nuovo articolo in arrivo!')">Aggiungi Nuovo Articolo</button>
-                <button onclick="alert('Funzione per aggiungere un nuovo gatto in arrivo!')">Aggiungi Nuovo Gatto</button>
+        <button onclick="alert('Funzione per aggiungere un nuovo articolo in arrivo!')">Aggiungi Nuovo Articolo
+        </button>
+        <button onclick="alert('Funzione per aggiungere un nuovo gatto in arrivo!')">Aggiungi Nuovo Gatto</button>
         <!-- Aside: Contenuto collaterale o ortogonale rispetto al contenuto principale [7, 16, 19, 20] -->
         <aside class="sidebar">
             <h3>Perché scegliere BRICOCCOLE?</h3>
@@ -84,7 +85,7 @@
 
 
 
-    <input type="file" id="file-selector" multiple>
+<input type="file" id="file-selector" multiple>
 <script>
   const fileSelector = document.getElementById('file-selector');
   fileSelector.addEventListener('change', (event) => {
