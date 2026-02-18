@@ -1,181 +1,130 @@
 /**
- * news.js
- * Carica dinamicamente le news dalla API e le inserisce nella pagina news.html
- * 
- * DA INCLUDERE in news.html:
- *   <script src="/js/news.js" defer></script>
- * 
- * La pagina news.html deve avere:
- *   - <section class="content-section"> con dentro:
- *       - <div id="featured-news-container"></div>   ← articolo in evidenza
- *       - <div class="secondary-news" id="news-list"></div>  ← news secondarie
+ * news.js — Feed news con scroll infinito
+ * Usato da: news.html
+ *
+ * Routing: la pagina singola è /news-detail?slug=SLUG
  */
 
+// ── CONFIG ──────────────────────────────────────
+const PAGE_SIZE   = 8;    // news per "pagina"
+const IMG_PATH    = "/media/news/";
+const EMOJI_MAP   = { expo: "🏆", cuccioli: "🐱", default: "📰" };
 
-// ──────────────────────────────────────────────
-// CONFIGURAZIONE
-// ──────────────────────────────────────────────
-const NEWS_LIMIT = 10; // Quante news caricare in totale
+// ── STATO ───────────────────────────────────────
+let currentPage   = 0;
+let isLoading     = false;
+let allLoaded     = false;
 
-
-// ──────────────────────────────────────────────
-// FETCH DELLE NEWS DAL SERVER
-// ──────────────────────────────────────────────
-
-/**
- * Recupera le news dall'API.
- * @param {number} limit - Numero massimo di news da ricevere
- * @returns {Promise<Array>} - Array di oggetti news
- */
-async function fetchNews(limit = NEWS_LIMIT) {
-  const response = await fetch(`/api/news?limit=${limit}`);
-  if (!response.ok) {
-    throw new Error(`Errore API: ${response.status}`);
-  }
-  return await response.json();
+// ── HELPERS ─────────────────────────────────────
+function formatDate(str) {
+    if (!str) return "";
+    return new Date(str.length === 10 ? str + "T12:00:00" : str)
+        .toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
 }
 
-
-// ──────────────────────────────────────────────
-// COSTRUZIONE HTML
-// ──────────────────────────────────────────────
-
-/**
- * Formatta una data ISO in formato italiano leggibile.
- * Es. "2025-05-10T00:00:00.000Z" → "10 Maggio 2025"
- * @param {string} dateString
- * @returns {string}
- */
-function formatDate(dateString) {
-  if (!dateString) return "";
-  const date = new Date(dateString);
-  return date.toLocaleDateString("it-IT", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+function excerpt(text, maxChars = 160) {
+    if (!text) return "";
+    return text.length > maxChars ? text.slice(0, maxChars).trimEnd() + "…" : text;
 }
 
-/**
- * Crea l'HTML per l'articolo in primo piano (featured).
- * @param {object} news
- * @returns {string} HTML string
- */
-function buildFeaturedArticle(news) {
-  const imageSection = news.image
-    ? `<div class="article-image">
-        <img src="${news.image}" alt="${news.imageAlt || news.title}" class="featured-image">
-       </div>`
-    : "";
-
-  const titleContent = news.link
-    ? `<a href="${news.link}">${news.title}</a>`
-    : news.title;
-
-  return `
-    <article class="featured-article">
-      <div class="article-content">
-        <h3 class="article-title">${titleContent}</h3>
-        <p class="article-date">${formatDate(news.date)}</p>
-        <p class="article-text">${news.text || news.summary || ""}</p>
-      </div>
-      ${imageSection}
-    </article>
-  `;
+function categoryEmoji(cat) {
+    return EMOJI_MAP[cat] || EMOJI_MAP.default;
 }
 
-/**
- * Crea l'HTML per una news secondaria.
- * @param {object} news
- * @returns {string} HTML string
- */
-function buildNewsItem(news) {
-  const titleContent = news.link
-    ? `<a href="${news.link}">${news.title}</a>`
-    : news.title;
+// ── BUILD CARD ───────────────────────────────────
+function buildCard(raw) {
+    const title   = raw.titolo_it || raw.titolo_en || "(senza titolo)";
+    const date    = formatDate(raw.data);
+    const text    = raw.testo_it  || raw.testo_en  || "";
+    const cat     = raw.categoria || "";
+    const slug    = raw.slug      || "";
+    const foto    = Array.isArray(raw.foto) && raw.foto.length > 0 ? raw.foto[0] : null;
+    const link    = `/news-detail?slug=${encodeURIComponent(slug)}`;
 
-  return `
-    <article class="news-item">
-      <h4 class="news-title">${titleContent}</h4>
-      <p class="news-date">${formatDate(news.date)}</p>
-      <p class="news-summary">${news.summary || ""}</p>
-    </article>
-  `;
+    const imageHtml = foto
+        ? `<img class="news-card-image" src="${IMG_PATH}${foto}" alt="${title}" loading="lazy">`
+        : `<div class="news-card-image-placeholder">${categoryEmoji(cat)}</div>`;
+
+    const badgeHtml = cat
+        ? `<span class="news-card-badge">${cat}</span>`
+        : "";
+
+    return `
+        <a class="news-card" href="${link}">
+            ${imageHtml}
+            <div class="news-card-body">
+                <div class="news-card-meta">
+                    ${badgeHtml}
+                    <span class="news-card-date">${date}</span>
+                </div>
+                <h3 class="news-card-title">${title}</h3>
+                <p class="news-card-excerpt">${excerpt(text)}</p>
+            </div>
+            <div class="news-card-footer">Leggi tutto →</div>
+        </a>`;
 }
 
-/**
- * Mostra un messaggio di errore nei container.
- */
-function showError(message) {
-  const featuredContainer = document.getElementById("featured-news-container");
-  const newsList = document.getElementById("news-list");
+// ── FETCH ────────────────────────────────────────
+async function loadNextPage() {
+    if (isLoading || allLoaded) return;
+    isLoading = true;
 
-  const errorHtml = `<p class="news-summary" style="color: var(--color-text-light); font-style: italic;">${message}</p>`;
+    const loader = document.getElementById("news-loader");
+    const endMsg = document.getElementById("news-end");
+    const feed   = document.getElementById("news-feed");
 
-  if (featuredContainer) featuredContainer.innerHTML = errorHtml;
-  if (newsList) newsList.innerHTML = "";
-}
+    if (loader) loader.style.display = "block";
 
+    try {
+        const skip = currentPage * PAGE_SIZE;
+        const res  = await fetch(`/api/news?limit=${PAGE_SIZE}&skip=${skip}`);
+        if (!res.ok) throw new Error(`Errore ${res.status}`);
+        const data = await res.json();
 
-// ──────────────────────────────────────────────
-// RENDERING NELLA PAGINA
-// ──────────────────────────────────────────────
+        if (data.length === 0 || data.length < PAGE_SIZE) {
+            allLoaded = true;
+            if (loader) loader.style.display = "none";
+            if (feed.children.length === 0 && data.length === 0) {
+                feed.innerHTML = `
+                    <div class="news-empty">
+                        <div class="news-empty-icon">📭</div>
+                        <p>Nessuna news disponibile al momento.</p>
+                    </div>`;
+            }
+            if (endMsg && feed.children.length > 0) endMsg.style.display = "block";
+        }
 
-/**
- * Renderizza le news nei rispettivi container HTML.
- * La prima news con `featured: true` va nell'articolo in evidenza.
- * Le restanti vanno nella lista secondaria.
- * @param {Array} newsList
- */
-function renderNews(newsList) {
-  const featuredContainer = document.getElementById("featured-news-container");
-  const secondaryContainer = document.getElementById("news-list");
+        data.forEach(raw => {
+            feed.insertAdjacentHTML("beforeend", buildCard(raw));
+        });
 
-  if (!newsList || newsList.length === 0) {
-    showError("Nessuna news disponibile al momento.");
-    return;
-  }
-
-  // Separa la news featured dalle secondarie
-  const featuredIndex = newsList.findIndex((n) => n.featured === true);
-  let featuredNews = null;
-  let secondaryNews = [...newsList];
-
-  if (featuredIndex !== -1) {
-    featuredNews = newsList[featuredIndex];
-    secondaryNews = newsList.filter((_, i) => i !== featuredIndex);
-  } else {
-    // Se nessuna ha featured=true, usa la prima come featured
-    featuredNews = newsList[0];
-    secondaryNews = newsList.slice(1);
-  }
-
-  // Render articolo in evidenza
-  if (featuredContainer) {
-    featuredContainer.innerHTML = buildFeaturedArticle(featuredNews);
-  }
-
-  // Render news secondarie
-  if (secondaryContainer) {
-    if (secondaryNews.length === 0) {
-      secondaryContainer.innerHTML = "";
-    } else {
-      secondaryContainer.innerHTML = secondaryNews.map(buildNewsItem).join("");
+        currentPage++;
+    } catch (err) {
+        console.error("Errore caricamento news:", err);
+        if (loader) loader.innerHTML = "⚠️ Errore nel caricamento. Riprova più tardi.";
+    } finally {
+        isLoading = false;
+        if (!allLoaded && loader) loader.style.display = "none";
     }
-  }
 }
 
+// ── SCROLL INFINITO ──────────────────────────────
+function setupInfiniteScroll() {
+    const sentinel = document.getElementById("news-loader");
+    if (!sentinel || !("IntersectionObserver" in window)) {
+        // Fallback: carica tutto subito
+        loadNextPage();
+        return;
+    }
 
-// ──────────────────────────────────────────────
-// INIT
-// ──────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) loadNextPage();
+    }, { rootMargin: "200px" });
 
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const news = await fetchNews(NEWS_LIMIT);
-    renderNews(news);
-  } catch (error) {
-    console.error("Errore nel caricamento delle news:", error);
-    showError("Impossibile caricare le news. Riprova più tardi.");
-  }
+    observer.observe(sentinel);
+}
+
+// ── INIT ─────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+    setupInfiniteScroll();
 });

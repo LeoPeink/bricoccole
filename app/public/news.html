@@ -4,73 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS caricato subito, non via componentLoader -->
     <link rel="stylesheet" href="/css/stile_bricoccole.css">
-    <title>BRICOCCOLE | Allevamento British Shorthair Trieste</title>
+    <title>BRICOCCOLE | News</title>
 </head>
 
-<!-- AUTO - SCRIPT COMPONENTLOADER -->
 <script src="/js/componentLoader.js" defer></script>
 <script src="/js/news.js" defer></script>
 
-<!-- AUTO - HEAD METADATA SECTION -->
 <div id="meta_head"></div>
 
 <body>
     <div class="main-container">
-        <!-- AUTO - HEADER SECTION -->
         <div id="header"></div>
-        <!-- AUTO - NAVIGATION CARDS -->
         <div id="navbar"></div>
 
-        <!-- MAIN CONTENT AREA -->
-        <main class="main-content-area">
-            <!-- NEWS/CONTENT SECTION -->
-            <section class="content-section">
-                <h2 class="section-title">News Bricoccole</h2>
+        <main class="content-section mb-xl">
+            <h2 class="section-title">News Bricoccole</h2>
 
-                <!-- Articolo in primo piano (popolato da news.js) -->
-                <div id="featured-news-container">
-                    <!-- Placeholder di caricamento -->
-                    <p class="news-summary" style="font-style: italic; color: var(--color-text-light);">
-                        Caricamento news...
-                    </p>
-                </div>
+            <div class="news-feed" id="news-feed"></div>
 
-                <!-- News secondarie (popolate da news.js) -->
-                <div class="secondary-news" id="news-list">
-                    <!-- Popolato dinamicamente -->
-                </div>
-            </section>
-            <!-- SIDEBAR INFO -->
-            <aside class="info-sidebar">
-                <div class="info-card">
-                    <h3 class="info-title">Perché scegliere BRICOCCOLE?</h3>
-                    <ul class="benefits-list">
-                        <li>✓ Allevamento con 14 anni di esperienza</li>
-                        <li>✓ Salute certificata dai migliori veterinari</li>
-                        <li>✓ Pedigree d'eccellenza</li>
-                        <li>✓ Supporto post-adozione</li>
-                    </ul>
-                </div>
-                <div class="contact-card">
-                    <h3 class="contact-title">Contatti Rapidi</h3>
-                    <p class="contact-info">📧 info@bricoccole.it</p>
-                    <p class="contact-info">📱 +39 123 456 7890</p>
-                </div>
-            </aside>
+            <div class="news-loader" id="news-loader">
+                <span class="spinner"></span> Caricamento news…
+            </div>
+
+            <div class="news-end-message" id="news-end" style="display:none;">
+                ✦ Hai letto tutto! ✦
+            </div>
         </main>
-        <!-- FOOTER -->
+
         <footer id="footer" class="site-footer"></footer>
     </div>
 </body>
 </html>
-
-<!-- LOGIN SECTION (Optional - can be moved to header corner)
-<div class="login-section">
-    <form action="/privata" class="login-form">
-        <input type="text" placeholder="Username" class="login-input">
-        <input type="password" placeholder="Password" class="login-input">
-        <input type="submit" value="Area Riservata" class="login-button">
-    </form>
-</div> -->

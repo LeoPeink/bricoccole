@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/stile_bricoccole.css">
+    <title>BRICOCCOLE | News</title>
+</head>
+
+<script src="/js/componentLoader.js" defer></script>
+<script src="/js/news-detail.js" defer></script>
+
+<div id="meta_head"></div>
+
+<body>
+    <div class="main-container">
+        <div id="header"></div>
+        <div id="navbar"></div>
+
+        <main class="content-section mb-xl">
+            <div class="article-wrapper">
+
+                <button class="back-btn" onclick="history.length > 1 ? history.back() : window.location='/news'">
+                    Torna alle news
+                </button>
+
+                <div id="article-content">
+                    <div class="article-loading">
+                        <span class="spinner"></span> Caricamento…
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+
+        <footer id="footer" class="site-footer"></footer>
+    </div>
+</body>
+</html>

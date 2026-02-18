@@ -77,6 +77,61 @@ router.get("/news", async (req, res) => {
     res.status(500).json({ message: "Errore durante il recupero delle news" });
   }
 });
+
+// ================================================================
+// PATCH PER public_routes.js
+// Incolla questi due blocchi DENTRO public_routes.js, prima di module.exports
+// ================================================================
+
+/**
+ * GET /api/news
+ * Lista delle news ordinate dalla più recente, con paginazione.
+ *
+ * Query params:
+ *   ?limit=N   → quante news per pagina (default: 8)
+ *   ?skip=N    → offset per lo scroll infinito (default: 0)
+ */
+router.get("/news", async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 8;
+        const skip  = parseInt(req.query.skip)  || 0;
+
+        const result = await dbOperator.askDbAllDocuments(
+            "news",
+            { pubblicato: true },
+            { data: -1 },
+            limit,
+            skip
+        );
+
+        res.json(result);
+    } catch (error) {
+        console.error("Errore /api/news:", error);
+        res.status(500).json({ message: "Errore durante il recupero delle news" });
+    }
+});
+
+/**
+ * GET /api/news/:slug
+ * Singola news per slug — usata dalla pagina di dettaglio.
+ */
+router.get("/news/:slug", async (req, res) => {
+    try {
+        const result = await dbOperator.askDbOneDocument("news", {
+            slug: req.params.slug,
+            pubblicato: true
+        });
+
+        if (!result || Object.keys(result).length === 0) {
+            return res.status(404).json({ message: "News non trovata" });
+        }
+
+        res.json(result);
+    } catch (error) {
+        console.error("Errore /api/news/:slug:", error);
+        res.status(500).json({ message: "Errore durante il recupero della news" });
+    }
+});
 /*
 //REGISTRAZIONE DI UN UTENTE
 router.post("/auth/signup", async (req, res) => {

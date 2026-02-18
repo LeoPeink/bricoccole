@@ -3,28 +3,30 @@ const { connectToDatabase, disconnectFromDatabase } = require("./db"); // Import
 const express = require("express");
 const app = express(); //crea il server web
 
+
 /**
- * Recupera tutti i documenti da una collection, con query opzionale.
- * Supporta ordinamento e limite per le news.
- * 
- * @param {string} collectionName - Nome della collection MongoDB
- * @param {object} query          - Filtro opzionale (default: {})
- * @param {object} sort           - Ordinamento opzionale (default: {})
- * @param {number} limit          - Numero massimo di risultati (default: 0 = tutti)
- * @returns {Array}               - Array di documenti
+ * Recupera documenti da una collection con query, ordinamento, limite e skip.
+ *
+ * @param {string} collectionName
+ * @param {object} query   - filtro MongoDB (default: {})
+ * @param {object} sort    - ordinamento (default: {})
+ * @param {number} limit   - max risultati, 0 = tutti (default: 0)
+ * @param {number} skip    - offset per paginazione (default: 0)
+ * @returns {Array}
  */
-async function askDbAllDocuments(collectionName, query = {}, sort = {}, limit = 0) {
-  try {
-    const db = await connectToDatabase();
-    let cursor = db.collection(collectionName).find(query).sort(sort);
-    if (limit > 0) cursor = cursor.limit(limit);
-    const result = await cursor.toArray();
-    return result ?? [];
-  } catch (error) {
-    console.log(error);
-    throw new Error("Errore nella lettura dal database");
-  }
+async function askDbAllDocuments(collectionName, query = {}, sort = {}, limit = 0, skip = 0) {
+    try {
+        const db = await connectToDatabase();
+        let cursor = db.collection(collectionName).find(query).sort(sort).skip(skip);
+        if (limit > 0) cursor = cursor.limit(limit);
+        const result = await cursor.toArray();
+        return result ?? [];
+    } catch (error) {
+        console.log(error);
+        throw new Error("Errore nella lettura dal database");
+    }
 }
+
 
 //cerca l'oggetto object  nel db
 async function askDbOneDocument(collectionName,query) {
