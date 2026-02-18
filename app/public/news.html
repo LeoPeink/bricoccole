@@ -21,12 +21,19 @@
         <main class="content-section mb-xl">
             <h2 class="section-title">News Bricoccole</h2>
 
+            <!-- Le card vengono inserite da news.js -->
             <div class="news-feed" id="news-feed"></div>
 
-            <div class="news-loader" id="news-loader">
+            <!-- Sentinel: sempre nel DOM, osservato dall'IntersectionObserver.
+                 Quando entra nel viewport scatta il fetch della pagina successiva. -->
+            <div id="news-sentinel"></div>
+
+            <!-- Loader: visibile solo durante il fetch -->
+            <div class="news-loader" id="news-loader" style="display:none;">
                 <span class="spinner"></span> Caricamento news…
             </div>
 
+            <!-- Messaggio di fine feed -->
             <div class="news-end-message" id="news-end" style="display:none;">
                 ✦ Hai letto tutto! ✦
             </div>
